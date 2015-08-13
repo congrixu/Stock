@@ -30,7 +30,7 @@ public class LoginAction extends BaseActionSupport {
 	 * @return
 	 * @throws Exception
 	 */
-	@Action(value = "loginview", interceptorRefs = @InterceptorRef("rxv5DefaultStack"))
+	@Action(value = "loginview", interceptorRefs = @InterceptorRef("rxv5DefaultStack") )
 	public String loginView() throws Exception {
 		return dispatcher("/WEB-INF/stock/login.jsp");
 	}
@@ -40,20 +40,30 @@ public class LoginAction extends BaseActionSupport {
 	 * @return
 	 * @throws Exception
 	 */
-	@Action(value = "login", interceptorRefs = @InterceptorRef("rxv5DefaultStack"))
+	@Action(value = "login", interceptorRefs = @InterceptorRef("rxv5DefaultStack") )
 	public String login() throws Exception {
-		String result = "/WEB-INF/stock/main.jsp";
 		User user = (User) getSession().getAttribute(Constant.SESSION_USER);
 		if (user == null) {
 			String userId = getRequest().getParameter("userId");
 			String pwd = getRequest().getParameter("pwd");
-			user = loginService.checkUserLogin(userId, pwd);
+			if (userId != null && pwd != null) {
+				user = loginService.checkUserLogin(userId, pwd);
+			}
 			if (user == null) {
 				getRequest().setAttribute("success", false);
-				result = "/WEB-INF/stock/login.jsp";
+				return dispatcher("/WEB-INF/stock/login.jsp");
 			}
 			getSession().setAttribute(Constant.SESSION_USER, user);
 		}
-		return dispatcher(result);
+		return redirect("/main.action");
+	}
+
+	@Action(value = "main", interceptorRefs = @InterceptorRef("rxv5DefaultStack") )
+	public String main() throws Exception {
+		User user = (User) getSession().getAttribute(Constant.SESSION_USER);
+		if (user == null) {
+			redirect("/login");
+		}
+		return dispatcher("/WEB-INF/stock/main.jsp");
 	}
 }

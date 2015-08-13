@@ -2,7 +2,7 @@
 <body>
 <%
 	String path = request.getContextPath();
-	response.sendRedirect(path + "/loginview.action");
+	response.sendRedirect(path + "/login.action");
 %>
 </body>
 </html>
