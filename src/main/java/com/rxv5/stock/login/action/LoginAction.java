@@ -62,7 +62,7 @@ public class LoginAction extends BaseActionSupport {
 	public String main() throws Exception {
 		User user = (User) getSession().getAttribute(Constant.SESSION_USER);
 		if (user == null) {
-			redirect("/login");
+			return redirect("/login.action");
 		}
 		return dispatcher("/WEB-INF/stock/main.jsp");
 	}
