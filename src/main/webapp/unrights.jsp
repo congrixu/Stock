@@ -1,7 +1,6 @@
 <!--
 说明：无权限访问页面提示
 时间：2011-9-27
-作者：倪毅
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Bio-Lims</title>
+<title>库存管理系统</title>
 <script type="text/javascript"></script>
 <link href="" rel="stylesheet" type="text/css" />
 </head>
