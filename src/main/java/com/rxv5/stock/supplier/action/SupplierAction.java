@@ -100,6 +100,7 @@ public class SupplierAction extends BaseActionSupport {
 		HttpUtils.write(JsonUtils.toJsonString(result));
 	}
 
+	@Action(value = "choose")
 	public String choose() throws Exception {
 		return dispatcher("/WEB-INF/stock/supplier/choose.jsp");
 	}
