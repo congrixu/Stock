@@ -1,0 +1,75 @@
+input {
+	width: 140px;
+}
+
+.pagination-page-list {
+	width: 60px;
+}
+
+.pagination-num {
+	width: 15px;
+}
+
+.pagination {
+	margin: 0;
+}
+
+.datagrid-toolbar {
+	height: 31px;
+}
+
+a img {
+	border: 0;
+}
+
+#menu,#main {
+	padding: 10px;
+	overflow: auto;
+}
+
+.dialog-button {
+	position: absolute;
+	bottom: 4px;
+	width: 95%;
+	margin-bottom: 2px;
+}
+
+textarea {
+	resize: none;
+}
+
+.form-input-width {
+	width: 400px;
+}
+
+.ui-state-active {
+	border: 1px solid #7ec5fc;
+	background: #8ccef8 url(../img/ui-bg_highlight-hard_50_8ccef8_1x100.png)
+		50% 50% repeat-x;
+	font-weight: normal;
+	color: #ffffff;
+}
+
+.ui-state-active a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.ui-state-default,.ui-widget-header .ui-state-default {
+	border: 1px solid #aed0ea;
+	background: #d7ebf9 url(../img/ui-bg_glass_80_d7ebf9_1x400.png) 50% 50%
+		repeat-x;
+	font-weight: normal;
+	color: #2779aa;
+}
+
+.ui-state-default a,.ui-state-default a:visited {
+	color: #2779aa;
+	text-decoration: none;
+}
+
+.form-horizontal .form-group{
+	margin-top: 5px; 
+	margin-bottom: 5px;
+}
+

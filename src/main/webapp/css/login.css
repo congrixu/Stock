@@ -1,0 +1,31 @@
+.ui-state-default {
+	border: none;
+	background-image: none;
+}
+
+#login-container {
+	position: absolute;
+	display: block;
+	visibility: hidden;
+	border-width: 4px;
+}
+
+#login-title {
+	padding: 5px 20px;
+	font-weight: bold;
+	font-size: 20px;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	border-bottom-width: 2px;
+}
+
+#login-form {
+	padding: 20px 20px 20px 160px;
+	background: url("../img/login-form-background.png") no-repeat 10px;
+}
+
+#login-form tr td {
+	padding: 3px 0;
+}
+

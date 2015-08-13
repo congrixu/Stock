@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    
+   <!-- <constant name="struts.convention.relative.result.types" value="dispatcher,velocity,freemarker,redirect,chain,abc"/>
+    -->
+    <constant name="struts.convention.result.path" value="/" />
+    <constant name="struts.custom.i18n.resources" value="/i18n/messages" />
+    
+    <constant name="struts.i18n.reload" value="false" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.configuration.xml.reload" value="false" />
+	<constant name="struts.objectFactory" value="spring" />
+	<!--  上传文件最大限制的定义,现在定义为300M，这里是struts默认的拦截大小，太小会影响到后面的过滤器，所以设大  -->
+	<constant name="struts.multipart.maxSize" value="314572800" />
+	<package name="default" extends="struts-default">
+		<result-types>
+			<result-type name="renderString" class="com.rxv5.platform.result.StringResult"/>
+			<result-type name="jspRedirect" class="com.rxv5.platform.result.RedirectResult"/>
+			<result-type name="jspDiapatcher" class="com.rxv5.platform.result.DispatcherResult"/>
+			<result-type name="actionChain" class="com.rxv5.platform.result.ChainResult"/>
+		</result-types>
+		
+		<interceptors>
+			<interceptor name="loginInterceptor" class="com.rxv5.stock.interceptor.LoginInterceptor" >
+				<param name="path">/loginView.action</param>
+			</interceptor>
+			<interceptor name="systemVariablesInterceptor" class="com.rxv5.stock.interceptor.systemVariablesInterceptor" />
+			<interceptor-stack name="rxv5BasicStack">
+				<interceptor-ref name="loginInterceptor"/>
+				<interceptor-ref name="systemVariablesInterceptor"/>
+       			<interceptor-ref name="basicStack"/>
+			</interceptor-stack>
+			<interceptor-stack name="rxv5DefaultStack">
+               <interceptor-ref name="systemVariablesInterceptor"/>
+               <interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="rxv5BasicStack" />
+		
+		<global-results>
+			<result name="jspRedirect" type="jspRedirect" />
+			<result name="jspDiapatcher" type="jspDiapatcher" />
+			<result name="actionChain" type="actionChain" />
+			<result name="renderString" type="renderString" />
+			<result name="global.exception">/error.jsp</result>
+			<result name="global.checkrights.exception">/unrights.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+    		<exception-mapping result="global.exception" exception="java.lang.Throwable"></exception-mapping>
+    	</global-exception-mappings>
+	</package>
+</struts>
