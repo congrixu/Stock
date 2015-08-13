@@ -30,7 +30,7 @@ public class LoginAction extends BaseActionSupport {
 	 * @return
 	 * @throws Exception
 	 */
-	@Action(value = "loginview", interceptorRefs = @InterceptorRef("rxv5DefaultStack") )
+	@Action(value = "loginview", interceptorRefs = @InterceptorRef("rxv5DefaultStack"))
 	public String loginView() throws Exception {
 		return dispatcher("/WEB-INF/stock/login.jsp");
 	}
@@ -40,7 +40,7 @@ public class LoginAction extends BaseActionSupport {
 	 * @return
 	 * @throws Exception
 	 */
-	@Action(value = "login", interceptorRefs = @InterceptorRef("rxv5DefaultStack") )
+	@Action(value = "login", interceptorRefs = @InterceptorRef("rxv5DefaultStack"))
 	public String login() throws Exception {
 		User user = (User) getSession().getAttribute(Constant.SESSION_USER);
 		if (user == null) {
@@ -58,7 +58,7 @@ public class LoginAction extends BaseActionSupport {
 		return redirect("/main.action");
 	}
 
-	@Action(value = "main", interceptorRefs = @InterceptorRef("rxv5DefaultStack") )
+	@Action(value = "main", interceptorRefs = @InterceptorRef("rxv5DefaultStack"))
 	public String main() throws Exception {
 		User user = (User) getSession().getAttribute(Constant.SESSION_USER);
 		if (user == null) {
