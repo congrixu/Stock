@@ -28,6 +28,11 @@ $(function() {
     width : 100
   });
   columns.push({
+    field : 'supplier-name',
+    title : '供应商',
+    width : 200
+  });
+  columns.push({
     field : 'remark',
     title : '备注',
     width : 200
@@ -59,7 +64,7 @@ $(function() {
   $("#add_btn").click(function() {
     var option = {};
     option.width = 380;
-    option.height = 230;
+    option.height = 240;
     var win = loadDialogPage(null, "添加商品", "/commodity/edit.action", [ {
       text : "确定",
       iconCls : "easyui-icon-save",
@@ -77,7 +82,7 @@ $(function() {
   $("#modify_btn").click(function() {
     var option = {};
     option.width = 380;
-    option.height = 230;
+    option.height = 240;
 
     var selData = $("#commodity_table").datagrid("getSelected");
     if (!selData) {
@@ -120,12 +125,14 @@ $(function() {
 
     var type = $("#type_").val();
     var remark = $("#remark").val();
+    var supplierId = $("#supplier_id").val();
 
     var param = {};
     param["commodity.id"] = $("#commodity_id").val();
     param["commodity.name"] = name;
     param["commodity.type"] = type;
     param["commodity.remark"] = remark;
+    param["commodity.supplier.id"] = supplierId;
 
     return param;
   }
