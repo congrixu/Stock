@@ -31,7 +31,7 @@
     <div id="menu" data-options="region:'west',title:'&nbsp;',split:false" style="width:200px;">
       <ul>
          <li><a href="/serviceinterface/search/query.action">销售管理</a></li>
-         <li><a href="/serviceinterface/datasource/query.action">采购管理</a></li>
+         <li><a href="/purchase/query.action">采购管理</a></li>
          <li><a href="/serviceinterface/datasource/query.action">库存管理</a></li>
          <li><a href="/commodity/query.action">商品管理</a></li>
          <li><a href="/supplier/query.action">供应商管理</a></li>
