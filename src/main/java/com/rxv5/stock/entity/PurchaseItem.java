@@ -101,6 +101,14 @@ public class PurchaseItem implements Serializable {
 		this.totalPrice = totalPrice;
 	}
 
+	public PurchaseOrder getPurchaseOrder() {
+		return purchaseOrder;
+	}
+
+	public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
+		this.purchaseOrder = purchaseOrder;
+	}
+
 	@Override
 	public String toString() {
 		return "PurchaseItem [id=" + id + ", cdy=" + cdy + ", clothes=" + clothes + ", num=" + num + ", price=" + price

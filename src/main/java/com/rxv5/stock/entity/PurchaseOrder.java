@@ -48,6 +48,9 @@ public class PurchaseOrder implements Serializable {
 	@Column(name = "REMARK_", length = 2000)
 	private String remark;//备注
 
+	@Column(name = "TOTAL_PRICE", scale = 6, precision = 4)
+	private Double totalPrice;
+
 	//非持久化属性
 	@Transient
 	private String stateStr;//状态名称
@@ -98,6 +101,14 @@ public class PurchaseOrder implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	@Override

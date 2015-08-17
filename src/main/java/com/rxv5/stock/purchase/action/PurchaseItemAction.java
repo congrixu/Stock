@@ -104,7 +104,6 @@ public class PurchaseItemAction extends BaseActionSupport {
 	public void save() throws Exception {
 		SuccessOrFailure result = SuccessOrFailure.SUCCESS;
 		try {
-			//TODO 页面要有设置采购单的位置
 			purchaseItemService.saveOrModify(item);
 		} catch (Exception e) {
 			result = SuccessOrFailure.FAILURE;

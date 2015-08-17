@@ -6,7 +6,7 @@
 	<!--title>选择供应商</title-->
 </head>
 <body>
-	<div id="oper_table">
+	<div id="commodity_choose_oper_table">
 		<table width="100%">
 			<tr>
 				<td style="width:10px">&nbsp;</td>

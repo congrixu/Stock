@@ -54,4 +54,11 @@ public class PurchaseDao extends BaseHibernateDao {
 		String hql = "from PurchaseOrder where id = '" + id + "'";
 		return selectUniqueResult(hql);
 	}
+
+	public void updateTotal(String id, Double totalPrice) {
+		PurchaseOrder po = selectOne(id);
+		po.setTotalPrice(totalPrice);
+		update(po);
+	}
+
 }
