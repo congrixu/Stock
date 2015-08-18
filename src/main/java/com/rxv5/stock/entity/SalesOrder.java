@@ -35,7 +35,7 @@ public class SalesOrder implements Serializable {
 	@Column(name = "CLIENT_PHONE", length = 50)
 	private String clientPhone;// 客户联系电话
 
-	@Column(name = "CLIENT_ADDR", length = 50)
+	@Column(name = "CLIENT_ADDR", length = 500)
 	private String clientAddr;// 客户地址
 
 	@Column(name = "SALES_DATE")
@@ -43,6 +43,15 @@ public class SalesOrder implements Serializable {
 
 	@Column(name = "REMARK_", length = 1000)
 	private String remark;// 备注
+
+	@Column(name = "TOTAL_NUM", scale = 6, precision = 4)
+	private Integer totalNum;//总数量
+
+	@Column(name = "TOTAL_PRICE", scale = 6, precision = 4)
+	private Double totalPrice;//总价钱
+
+	@Column(name = "STATE_", length = 2)
+	public String state;//状态
 
 	public String getId() {
 		return id;
@@ -92,10 +101,35 @@ public class SalesOrder implements Serializable {
 		this.remark = remark;
 	}
 
+	public Integer getTotalNum() {
+		return totalNum;
+	}
+
+	public void setTotalNum(Integer totalNum) {
+		this.totalNum = totalNum;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	@Override
 	public String toString() {
 		return "SalesOrder [id=" + id + ", clientName=" + clientName + ", clientPhone=" + clientPhone + ", clientAddr="
-				+ clientAddr + ", salesDate=" + salesDate + ", remark=" + remark + "]";
+				+ clientAddr + ", salesDate=" + salesDate + ", remark=" + remark + ", totalNum=" + totalNum
+				+ ", totalPrice=" + totalPrice + ", state=" + state + "]";
 	}
 
 }
