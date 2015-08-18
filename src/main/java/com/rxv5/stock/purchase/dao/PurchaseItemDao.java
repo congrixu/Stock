@@ -40,4 +40,16 @@ public class PurchaseItemDao extends BaseHibernateDao {
 		String hql = "from PurchaseItem where id = '" + id + "'";
 		return selectUniqueResult(hql);
 	}
+
+	public Double selectSumTotal(String purchaseId) {
+		String hql = "select sum(totalPrice) from PurchaseItem where purchaseOrder.id='" + purchaseId + "'";
+		Object obj = getSession().createQuery(hql).uniqueResult();
+		return obj == null ? 0d : Double.valueOf(obj.toString());
+	}
+
+	public List<PurchaseItem> selectByPurchaseId(String purchaseId) {
+		String hql = "from PurchaseItem where purchaseOrder.id='" + purchaseId + "' ";
+		return selectList(hql, null, null);
+	}
+
 }

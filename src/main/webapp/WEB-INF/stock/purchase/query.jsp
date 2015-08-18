@@ -19,6 +19,7 @@
 				</td>
 				<td align="right">
 					<a href="#" id="item_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-setting',plain:true">明细管理</a>
+					<a href="#" id="in_lib_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-redo',plain:true">入库</a>
 					<a href="#" id="add_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-add',plain:true">添加</a>
 					<a href="#" id="modify_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-edit',plain:true">修改</a>
 					<a href="#" id="delete_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-remove',plain:true">删除</a>

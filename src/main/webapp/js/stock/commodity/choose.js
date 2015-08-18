@@ -37,7 +37,7 @@ $(function() {
   opts.title = "选择商品";
   opts.singleSelect = true;
 
-  grid("commodity_choose_table", "oper_table", columns, "/supplier/queryjson.action", opts);
+  grid("commodity_choose_table", "commodity_choose_oper_table", columns, "/commodity/queryjson.action", opts);
 
   $("#query_btn").click(function() {
     var param = buildSearchData();

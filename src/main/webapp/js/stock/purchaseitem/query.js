@@ -14,7 +14,7 @@ $(function() {
 	columns.push({
 		field : 'cdy-name',
 		title : '商品名称',
-		width : 100,
+		width : 200,
 	});
 	columns.push({
 		field : 'clothes',
@@ -25,8 +25,7 @@ $(function() {
 	columns.push({
 		field : 'num',
 		title : '数量',
-		width : 100,
-		hidden : true
+		width : 100
 	});
 	columns.push({
 		field : 'price',
@@ -43,7 +42,7 @@ $(function() {
 	opts.title = "采购明细";
 	opts.singleSelect = true;
 
-	grid("purchase_item_table", "oper_table", columns, "/purchaseitem/queryjson.action?purchaseitem="
+	grid("purchase_item_table", "oper_table", columns, "/purchaseitem/queryjson.action?purchaseId="
 			+ $("#purchase_id").val(), opts);
 
 	$("#query_btn").click(function() {
@@ -67,11 +66,6 @@ $(function() {
 			return false;
 		}
 
-		var state = selData.state;
-		if ("2" == state) {
-			alertMsg("已入库采购订单不允许被删除！");
-			return false;
-		}
 		confirmMsg("您确定要删除选择中的数据吗？", "请确认", function() {
 			ajax("post", "/purchaseitem/delete.action", {
 				id : selData.id
@@ -88,7 +82,7 @@ $(function() {
 	$("#add_btn").click(function() {
 		var option = {};
 		option.width = 400;
-		option.height = 200;
+		option.height = 250;
 		var win = loadDialogPage(null, "添加采购单", "/purchaseitem/edit.action", [ {
 			text : "确定",
 			iconCls : "easyui-icon-save",
@@ -106,7 +100,7 @@ $(function() {
 	$("#modify_btn").click(function() {
 		var option = {};
 		option.width = 400;
-		option.height = 200;
+		option.height = 250;
 
 		var selData = $("#purchase_item_table").datagrid("getSelected");
 		if (!selData) {
@@ -141,18 +135,36 @@ $(function() {
 
 	var buildData = function() {
 
-		var name = $("#supplier_name").val();
-		if (!name) {
-			alertMsg("请选择供应商！");
+		var cdyName = $("#cdy_name").val();
+		if (!cdyName) {
+			alertMsg("请选择商品！");
+			return false;
+		}
+		var cdyId = $("#cdy_id").val();
+		var clothes = $("#clothes").val();
+		if (isNaN(clothes)) {
+			alertMsg("填写的件数不正确，请填写数值！");
 			return false;
 		}
 
-		var supplierId = $("#supplier_id").val();
+		var num = $("#num").val();
+		if (isNaN(num)) {
+			alertMsg("填写的数量不正确，请填写数值！");
+			return false;
+		}
 
+		var price = $("#price").val();
+		if (isNaN(price)) {
+			alertMsg("填写的价格不正确，请填写数值！");
+			return false;
+		}
 		var param = {};
-		param["purchase.id"] = $("#purchase_id").val();
-		param["purchase.supplier.id"] = supplierId;
-		param["purchase.remark"] = $("#remark").val();
+		param["item.purchaseOrder.id"] = $("#purchase_id").val();
+		param["item.cdy.id"] = cdyId;
+		param["item.clothes"] = clothes;
+		param["item.num"] = num;
+		param["item.price"] = price;
+		param["item.id"] = $("#supplier_item_id").val();
 
 		return param;
 	}
@@ -160,5 +172,11 @@ $(function() {
 	$("#return_btn").click(function() {
 		load("/purchase/query.action", null, $("#main"), null);
 	});
+
+	// 如果是已入库商品，采购明细不允许被 操作
+	var purchaseState = $("#purchase_state").val();
+	if (purchaseState == '2') {
+		$("#oper_btn_div").hide();
+	}
 
 });

@@ -26,16 +26,6 @@ public class LoginAction extends BaseActionSupport {
 	private LoginService loginService;
 
 	/**
-	 * 登录系统VIEW
-	 * @return
-	 * @throws Exception
-	 */
-	@Action(value = "loginview", interceptorRefs = @InterceptorRef("rxv5DefaultStack"))
-	public String loginView() throws Exception {
-		return dispatcher("/WEB-INF/stock/login.jsp");
-	}
-
-	/**
 	 * 登录系统
 	 * @return
 	 * @throws Exception
@@ -65,5 +55,11 @@ public class LoginAction extends BaseActionSupport {
 			return redirect("/login.action");
 		}
 		return dispatcher("/WEB-INF/stock/main.jsp");
+	}
+
+	@Action(value = "logout", interceptorRefs = @InterceptorRef("rxv5DefaultStack"))
+	public String logout() throws Exception {
+		getSession().removeAttribute(Constant.SESSION_USER);
+		return redirect("/main.action");
 	}
 }

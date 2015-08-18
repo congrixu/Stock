@@ -27,7 +27,7 @@
 		
 		<interceptors>
 			<interceptor name="loginInterceptor" class="com.rxv5.stock.interceptor.LoginInterceptor" >
-				<param name="path">/loginView.action</param>
+				<param name="path">/login.action</param>
 			</interceptor>
 			<interceptor name="systemVariablesInterceptor" class="com.rxv5.stock.interceptor.systemVariablesInterceptor" />
 			<interceptor-stack name="rxv5BasicStack">

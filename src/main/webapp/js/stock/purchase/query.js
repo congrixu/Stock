@@ -14,13 +14,18 @@ $(function() {
 	columns.push({
 		field : 'supplier-name',
 		title : '供应商名称',
-		width : 100,
+		width : 200,
 	});
 	columns.push({
 		field : 'createDate',
 		title : '采购日期',
 		width : 150,
 		sortable : true
+	});
+	columns.push({
+		field : 'totalPrice',
+		title : '总价钱',
+		width : 150
 	});
 	columns.push({
 		field : 'state',
@@ -32,6 +37,11 @@ $(function() {
 		field : 'stateStr',
 		title : '状态',
 		width : 100
+	});
+	columns.push({
+		field : 'inTime',
+		title : '入库时间',
+		width : 120
 	});
 	columns.push({
 		field : 'remark',
@@ -172,6 +182,32 @@ $(function() {
 		load("/purchaseitem/query.action", {
 			purchaseId : selData.id
 		}, $("#main"), null);
+	});
+
+	$("#in_lib_btn").click(function() {
+		var selData = $("#purchase_table").datagrid("getSelected");
+		if (!selData) {
+			alertMsg("请选择您要操作的数据！");
+			return false;
+		}
+
+		var state = selData.state;
+		if ("2" == state) {
+			alertMsg("当前采购单已入库！");
+			return false;
+		}
+		confirmMsg("您确定要对当前采购单做入库处理吗？", "请确认", function() {
+			ajax("post", "/purchase/inlib.action", {
+				id : selData.id
+			}, function(data) {
+				if (!data.success) {
+					alertMsg("操作失败！");
+				} else {
+					$("#purchase_table").datagrid("reload");
+				}
+			}, null);
+		});
+
 	});
 
 });
