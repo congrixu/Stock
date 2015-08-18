@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rxv5.stock.Constant.PurchaseEnum;
+import com.rxv5.stock.entity.PurchaseItem;
 import com.rxv5.stock.entity.PurchaseOrder;
 import com.rxv5.stock.purchase.dao.PurchaseDao;
+import com.rxv5.stock.purchase.dao.PurchaseItemDao;
+import com.rxv5.stock.storage.dao.StorageDao;
 
 @Service
 @SuppressWarnings( { "unchecked" })
@@ -19,6 +22,12 @@ public class PurchaseService {
 
 	@Resource
 	private PurchaseDao purchaseDao;
+
+	@Resource
+	private PurchaseItemDao purchaseItemDao;
+
+	@Resource
+	private StorageDao storageDao;
 
 	public Map<String, Object> query(Map<String, String> param, Integer page, Integer rows, String sort, String order)
 			throws Exception {
@@ -56,6 +65,20 @@ public class PurchaseService {
 			_purchase.setRemark(purchase.getRemark());
 			_purchase.setSupplier(purchase.getSupplier());
 			purchaseDao.update(_purchase);
+		}
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public void inlib(String purchaseId) {
+		List<PurchaseItem> list = purchaseItemDao.selectByPurchaseId(purchaseId);
+		if (list != null && list.size() > 0) {
+			for (PurchaseItem item : list) {
+				storageDao.add(item.getCdy().getId(), item.getNum());
+			}
+			PurchaseOrder purchase = purchaseDao.selectOne(purchaseId);
+			purchase.setInTime(new Date());
+			purchase.setState(PurchaseEnum.inToLib.getId());
+			purchaseDao.update(purchase);
 		}
 	}
 }

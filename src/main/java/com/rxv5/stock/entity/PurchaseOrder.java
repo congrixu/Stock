@@ -51,6 +51,9 @@ public class PurchaseOrder implements Serializable {
 	@Column(name = "TOTAL_PRICE", scale = 6, precision = 4)
 	private Double totalPrice;
 
+	@Column(name = "IN_TIME")
+	private Date inTime;//入库时间
+
 	//非持久化属性
 	@Transient
 	private String stateStr;//状态名称
@@ -111,10 +114,19 @@ public class PurchaseOrder implements Serializable {
 		this.totalPrice = totalPrice;
 	}
 
+	public Date getInTime() {
+		return inTime;
+	}
+
+	public void setInTime(Date inTime) {
+		this.inTime = inTime;
+	}
+
 	@Override
 	public String toString() {
 		return "PurchaseOrder [id=" + id + ", supplier=" + supplier + ", createDate=" + createDate + ", state=" + state
-				+ ", remark=" + remark + ", stateStr=" + stateStr + "]";
+				+ ", remark=" + remark + ", totalPrice=" + totalPrice + ", inTime=" + inTime + ", stateStr=" + stateStr
+				+ "]";
 	}
 
 }

@@ -72,6 +72,7 @@ public class PurchaseAction extends BaseActionSupport {
 		map.put("state", "state");
 		map.put("remark", "remark");
 		map.put("totalPrice", "totalPrice");
+		map.put("inTime", "inTime");
 
 		new SendData().sendDataJson(map, list, total, getResponse());
 	}
@@ -109,6 +110,19 @@ public class PurchaseAction extends BaseActionSupport {
 		SuccessOrFailure result = SuccessOrFailure.SUCCESS;
 		try {
 			purchaseService.saveOrModify(purchase);
+		} catch (Exception e) {
+			result = SuccessOrFailure.FAILURE;
+			e.printStackTrace();
+		}
+		HttpUtils.write(JsonUtils.toJsonString(result));
+	}
+
+	@Action(value = "inlib")
+	public void inlib() throws Exception {
+		SuccessOrFailure result = SuccessOrFailure.SUCCESS;
+		try {
+			String id = getRequest().getParameter("id");
+			purchaseService.inlib(id);
 		} catch (Exception e) {
 			result = SuccessOrFailure.FAILURE;
 			e.printStackTrace();
