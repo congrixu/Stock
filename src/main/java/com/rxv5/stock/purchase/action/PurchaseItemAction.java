@@ -19,7 +19,9 @@ import com.rxv5.platform.util.JsonUtils;
 import com.rxv5.platform.util.SendData;
 import com.rxv5.stock.Constant;
 import com.rxv5.stock.entity.PurchaseItem;
+import com.rxv5.stock.entity.PurchaseOrder;
 import com.rxv5.stock.purchase.service.PurchaseItemService;
+import com.rxv5.stock.purchase.service.PurchaseService;
 
 /**
  * 采购单明细
@@ -39,10 +41,14 @@ public class PurchaseItemAction extends BaseActionSupport {
 	@Resource
 	private PurchaseItemService purchaseItemService;
 
+	@Resource
+	private PurchaseService purchaseService;
+
 	@Action(value = "query")
 	public String query() throws Exception {
 		String purchaseId = getParameterFromRequest("purchaseId");
-		getRequest().setAttribute("purchaseId", purchaseId);
+		PurchaseOrder po = purchaseService.get(purchaseId);
+		getRequest().setAttribute("purchase", po);
 		return dispatcher("/WEB-INF/stock/purchaseitem/query.jsp");
 	}
 

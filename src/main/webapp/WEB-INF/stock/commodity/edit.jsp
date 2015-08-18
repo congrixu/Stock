@@ -13,7 +13,7 @@
 	  <div class="form-group">
 	    <label for="name_" class="col-sm-1 control-label">名称：</label>
 	    <div class="col-sm-11">
-	      <input type="text" class="form-control" id="name_"  placeholder="供应商名称" value="${requestScope.commodity.name}">
+	      <input type="text" class="form-control" id="name_"  placeholder="商品名称" value="${requestScope.commodity.name}">
 	    </div>
 	  </div>
 	  <div class="form-group">
