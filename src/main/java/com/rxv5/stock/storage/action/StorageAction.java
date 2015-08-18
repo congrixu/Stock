@@ -67,6 +67,7 @@ public class StorageAction extends BaseActionSupport {
 		map.put("id", "id");
 		map.put("cdy-id", "cdy-id");
 		map.put("cdy-name", "cdy-name");
+		map.put("cdy-py", "cdy-py");
 		map.put("cdy-type", "cdy-type");
 		map.put("num", "num");
 
@@ -91,6 +92,11 @@ public class StorageAction extends BaseActionSupport {
 			e.printStackTrace();
 		}
 		HttpUtils.write(JsonUtils.toJsonString(result));
+	}
+
+	@Action(value = "choose")
+	public String choose() throws Exception {
+		return dispatcher("/WEB-INF/stock/storage/choose.jsp");
 	}
 
 	public Storage getStorage() {
