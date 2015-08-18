@@ -67,7 +67,6 @@ public class CommodityAction extends BaseActionSupport {
 		map.put("py", "py");
 		map.put("type", "type");
 		map.put("remark", "remark");
-		map.put("supplier-name", "supplier-name");
 
 		new SendData().sendDataJson(map, list, total, getResponse());
 	}

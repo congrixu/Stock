@@ -23,13 +23,6 @@
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="supplier_name" class="col-sm-1 control-label">供应商：</label>
-	    <div class="col-sm-11">
-	      <input type="text" class="form-control" id="supplier_name" placeholder="供应商" value="${requestScope.commodity.supplier.name}">
-	      <input type="hidden" id="supplier_id" vlaue="${requestScope.commodity.supplier.id}">
-	    </div>
-	  </div>
-	  <div class="form-group">
 	    <label for="remark" class="col-sm-1 control-label">备注：</label>
 	    <div class="col-sm-11">
 	      <textarea rows="" cols="" id="remark">${requestScope.commodity.remark}</textarea>
@@ -39,4 +32,3 @@
 	<div id="choose_supplier_div"></div>
 </body>
 </html>
-<script src="${CONTEXT_PATH}/js/stock/commodity/edit.js" type="text/javascript"></script>

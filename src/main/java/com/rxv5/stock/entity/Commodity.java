@@ -4,16 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 /**
  * 商品信息
@@ -42,11 +37,6 @@ public class Commodity implements Serializable {
 
 	@Column(name = "REMARK_", length = 2000)
 	private String remark;//备注
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@NotFound(action = NotFoundAction.IGNORE)
-	@JoinColumn(name = "SUPPLIER_ID")
-	private Supplier supplier;//供应商
 
 	public String getId() {
 		return id;
@@ -88,18 +78,9 @@ public class Commodity implements Serializable {
 		this.remark = remark;
 	}
 
-	public Supplier getSupplier() {
-		return supplier;
-	}
-
-	public void setSupplier(Supplier supplier) {
-		this.supplier = supplier;
-	}
-
 	@Override
 	public String toString() {
-		return "Commodity [id=" + id + ", name=" + name + ", type=" + type + ", py=" + py + ", remark=" + remark
-				+ ", supplier=" + supplier + "]";
+		return "Commodity [id=" + id + ", name=" + name + ", type=" + type + ", py=" + py + ", remark=" + remark + "]";
 	}
 
 }
