@@ -35,6 +35,7 @@ public class SalesItemService {
 		String salesId = si.getSalesOrder().getId();
 		salesItemDao.delete(si);
 		sumTotal(salesId);
+		//TODO 修改库存
 	}
 
 	@Transactional(rollbackFor = Exception.class)
@@ -56,6 +57,7 @@ public class SalesItemService {
 		}
 
 		sumTotal(item.getSalesOrder().getId());
+		//TODO 修改库存
 	}
 
 	private void sumTotal(String salesId) {
