@@ -45,10 +45,10 @@ public class StorageAction extends BaseActionSupport {
 
 	@Action(value = "queryjson")
 	public void queryJson() throws Exception {
-		Integer page = getRequest().getParameter("page") == null ? 1 : Integer.valueOf(getRequest()
-				.getParameter("page"));
-		Integer rows = getRequest().getParameter("rows") == null ? Constant.DEFAULT_PAGE_SIZE : Integer
-				.valueOf(getRequest().getParameter("rows"));
+		Integer page = getRequest().getParameter("page") == null ? 1
+				: Integer.valueOf(getRequest().getParameter("page"));
+		Integer rows = getRequest().getParameter("rows") == null ? Constant.DEFAULT_PAGE_SIZE
+				: Integer.valueOf(getRequest().getParameter("rows"));
 
 		String sort = getRequest().getParameter("sort");
 		String order = getRequest().getParameter("order");
@@ -91,6 +91,11 @@ public class StorageAction extends BaseActionSupport {
 			e.printStackTrace();
 		}
 		HttpUtils.write(JsonUtils.toJsonString(result));
+	}
+
+	@Action(value = "choose")
+	public String choose() throws Exception {
+		return dispatcher("/WEB-INF/stock/storage/choose.jsp");
 	}
 
 	public Storage getStorage() {

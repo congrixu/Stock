@@ -5,7 +5,7 @@ $(function() {
 		option.width = 600;
 		option.height = 350;
 
-		var url = "/commodity/choose.action";
+		var url = "/storage/choose.action";
 		var win = loadDialogPage($("#choose_commodity_div"), "选择商品", url, [ {
 			text : "确定",
 			iconCls : "easyui-icon-save",
