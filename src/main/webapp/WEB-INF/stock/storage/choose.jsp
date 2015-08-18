@@ -16,7 +16,7 @@
 					<a href="#" id="query_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-search',plain:true">查询</a>
 				</td>
 				<td>
-					<a href="#" id="commodity_choose_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-setting',plain:true">添加</a>
+					&nbsp;
 				</td>
 				<td style="width:30px">&nbsp;</td>
 			</tr>
