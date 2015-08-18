@@ -1,140 +1,136 @@
 $(function() {
 
-  var columns = [];
+	var columns = [];
 
-  columns.push({
-    field : 'ck',
-    checkbox : true
-  });
-  columns.push({
-    field : 'id',
-    title : 'ID',
-    width : 100,
-    hidden : true
-  });
-  columns.push({
-    field : 'name',
-    title : '品名',
-    width : 100,
-  });
-  columns.push({
-    field : 'py',
-    title : '拼音缩写',
-    width : 150
-  });
-  columns.push({
-    field : 'type',
-    title : '型号',
-    width : 100
-  });
-  columns.push({
-    field : 'supplier-name',
-    title : '供应商',
-    width : 200
-  });
-  columns.push({
-    field : 'remark',
-    title : '备注',
-    width : 200
-  });
+	columns.push({
+		field : 'ck',
+		checkbox : true
+	});
+	columns.push({
+		field : 'id',
+		title : 'ID',
+		width : 100,
+		hidden : true
+	});
+	columns.push({
+		field : 'name',
+		title : '品名',
+		width : 100,
+	});
+	columns.push({
+		field : 'py',
+		title : '拼音缩写',
+		width : 150
+	});
+	columns.push({
+		field : 'type',
+		title : '型号',
+		width : 100
+	});
 
-  var opts = {};
-  opts.title = "商品管理";
-  opts.singleSelect = true;
+	columns.push({
+		field : 'remark',
+		title : '备注',
+		width : 200
+	});
 
-  grid("commodity_table", "oper_table", columns, "/commodity/queryjson.action", opts);
+	var opts = {};
+	opts.title = "商品管理";
+	opts.singleSelect = true;
 
-  $("#query_btn").click(function() {
-    var param = buildSearchData();
-    $("#commodity_table").datagrid('load', param);
-  });
+	grid("commodity_table", "oper_table", columns, "/commodity/queryjson.action", opts);
 
-  var buildSearchData = function() {
-    var param = {};
-    var name = $.trim($("#search_name").val());
-    var py = $.trim($("#search_py").val());
-    if (name)
-      param.name = name;
-    if (py)
-      param.py = py;
+	$("#query_btn").click(function() {
+		var param = buildSearchData();
+		$("#commodity_table").datagrid('load', param);
+	});
 
-    return param;
-  }
+	var buildSearchData = function() {
+		var param = {};
+		var name = $.trim($("#search_name").val());
+		var py = $.trim($("#search_py").val());
+		if (name)
+			param.name = name;
+		if (py)
+			param.py = py;
 
-  $("#add_btn").click(function() {
-    var option = {};
-    option.width = 380;
-    option.height = 240;
-    var win = loadDialogPage(null, "添加商品", "/commodity/edit.action", [ {
-      text : "确定",
-      iconCls : "easyui-icon-save",
-      handler : function() {
-        var param = buildData();
+		return param;
+	}
 
-        if (!param)
-          return;
+	$("#add_btn").click(function() {
+		var option = {};
+		option.width = 380;
+		option.height = 220;
+		var win = loadDialogPage(null, "添加商品", "/commodity/edit.action", [ {
+			text : "确定",
+			iconCls : "easyui-icon-save",
+			handler : function() {
+				var param = buildData();
 
-        saveOrModifyData(param, win);
-      }
-    } ], true, option, true);
-  });
+				if (!param)
+					return;
 
-  $("#modify_btn").click(function() {
-    var option = {};
-    option.width = 380;
-    option.height = 240;
+				saveOrModifyData(param, win);
+			}
+		} ], true, option, true);
+	});
 
-    var selData = $("#commodity_table").datagrid("getSelected");
-    if (!selData) {
-      alertMsg("请选择您要修改的数据！");
-      return;
-    }
+	$("#modify_btn").click(function() {
+		var option = {};
+		option.width = 380;
+		option.height = 220;
 
-    var win = loadDialogPage(null, "修改商品", "/commodity/edit.action?id=" + selData.id, [ {
-      text : "确定",
-      iconCls : "easyui-icon-save",
-      handler : function() {
-        var param = buildData();
+		var selData = $("#commodity_table").datagrid("getSelected");
+		if (!selData) {
+			alertMsg("请选择您要修改的数据！");
+			return;
+		}
 
-        if (!param)
-          return;
+		var win = loadDialogPage(null, "修改商品", "/commodity/edit.action?id=" + selData.id, [ {
+			text : "确定",
+			iconCls : "easyui-icon-save",
+			handler : function() {
+				var param = buildData();
 
-        saveOrModifyData(param, win);
-      }
-    } ], true, option, true);
-  });
+				if (!param)
+					return;
 
-  function saveOrModifyData(param, win) {
-    ajax("post", "/commodity/save.action", param, function(data) {
-      if (!data.success) {
-        alertMsg(data.message);
-      } else {
-        $(win).dialog("close");
-        $("#commodity_table").datagrid("reload");
-      }
-    }, null);
-  }
+				saveOrModifyData(param, win);
+			}
+		} ], true, option, true);
+	});
 
-  var buildData = function() {
+	function saveOrModifyData(param, win) {
+		ajax("post", "/commodity/save.action", param, function(data) {
+			if (!data.success) {
+				alertMsg(data.message);
+			} else {
+				$(win).dialog("close");
+				$("#commodity_table").datagrid("reload");
+			}
+		}, null);
+	}
 
-    var name = $("#name_").val();
-    if (!name) {
-      alertMsg("请填写名称！");
-      return false;
-    }
+	var buildData = function() {
 
-    var type = $("#type_").val();
-    var remark = $("#remark").val();
-    var supplierId = $("#supplier_id").val();
+		var name = $("#name_").val();
+		if (!name) {
+			alertMsg("请填写名称！");
+			return false;
+		}
 
-    var param = {};
-    param["commodity.id"] = $("#commodity_id").val();
-    param["commodity.name"] = name;
-    param["commodity.type"] = type;
-    param["commodity.remark"] = remark;
-    param["commodity.supplier.id"] = supplierId;
+		var type = $("#type_").val();
+		var remark = $("#remark").val();
+		var supplierId = $("#supplier_id").val();
 
-    return param;
-  }
+		var param = {};
+		param["commodity.id"] = $("#commodity_id").val();
+		param["commodity.name"] = name;
+		param["commodity.type"] = type;
+		param["commodity.remark"] = remark;
+		param["commodity.supplier.id"] = supplierId;
+
+		return param;
+	}
 
 });
