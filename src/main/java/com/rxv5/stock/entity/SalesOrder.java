@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -52,6 +53,10 @@ public class SalesOrder implements Serializable {
 
 	@Column(name = "STATE_", length = 2)
 	public String state;//状态
+
+	//非持久化属性
+	@Transient
+	private String stateStr;//状态名称
 
 	public String getId() {
 		return id;
@@ -123,6 +128,14 @@ public class SalesOrder implements Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getStateStr() {
+		return stateStr;
+	}
+
+	public void setStateStr(String stateStr) {
+		this.stateStr = stateStr;
 	}
 
 	@Override

@@ -42,4 +42,9 @@ public class SalesItemDao extends BaseHibernateDao {
 		return (Object[]) obj;
 	}
 
+	public List<SalesItem> selectBySalesId(String salesId) {
+		String hql = "from SalesItem where salesOrder.id='" + salesId + "' ";
+		return selectList(hql, null, null);
+	}
+
 }

@@ -43,6 +43,17 @@ $(function() {
 		width : 120
 	});
 	columns.push({
+		field : 'state',
+		title : '状态',
+		width : 100,
+		hidden : true
+	});
+	columns.push({
+		field : 'stateStr',
+		title : '状态',
+		width : 100
+	});
+	columns.push({
 		field : 'remark',
 		title : '备注',
 		width : 250
@@ -177,6 +188,32 @@ $(function() {
 		load("/salesitem/query.action", {
 			salesId : selData.id
 		}, $("#main"), null);
+	});
+
+	$("#out_lib_btn").click(function() {
+		var selData = $("#sales_table").datagrid("getSelected");
+		if (!selData) {
+			alertMsg("请选择您要操作的数据！");
+			return false;
+		}
+
+		var state = selData.state;
+		if ("3" == state) {
+			alertMsg("当前销售单已出库！");
+			return false;
+		}
+		confirmMsg("您确定要对当前销售单做出库处理吗？", "请确认", function() {
+			ajax("post", "/sales/outlib.action", {
+				id : selData.id
+			}, function(data) {
+				if (!data.success) {
+					alertMsg("操作失败！");
+				} else {
+					$("#sales_table").datagrid("reload");
+				}
+			}, null);
+		});
+
 	});
 
 });
