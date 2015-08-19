@@ -135,8 +135,12 @@ $(function() {
 			alertMsg("请选择您要修改的数据！");
 			return;
 		}
-
-		var win = loadDialogPage(null, "添加销售单", "/sales/edit.action?id=" + selData.id, [ {
+		var state = selData.state;
+		if ("2" == state) {
+			alertMsg("当前销售单已完成出库,不允许被删除！");
+			return false;
+		}
+		var win = loadDialogPage(null, "修改销售单", "/sales/edit.action?id=" + selData.id, [ {
 			text : "确定",
 			iconCls : "easyui-icon-save",
 			handler : function() {
