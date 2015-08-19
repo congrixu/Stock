@@ -128,7 +128,11 @@ $(function() {
 			alertMsg("请选择您要修改的数据！");
 			return;
 		}
-
+		var state = selData.state;
+		if ("2" == state) {
+			alertMsg("已入库采购订单不允许被删除！");
+			return false;
+		}
 		var win = loadDialogPage(null, "修改采购单", "/purchase/edit.action?id=" + selData.id, [ {
 			text : "确定",
 			iconCls : "easyui-icon-save",
