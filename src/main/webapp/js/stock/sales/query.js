@@ -89,7 +89,11 @@ $(function() {
 			alertMsg("请选择您要删除的数据！");
 			return false;
 		}
-
+		var state = selData.state;
+		if ("2" == state) {
+			alertMsg("当前销售单已完成出库,不允许被删除！");
+			return false;
+		}
 		confirmMsg("您确定要删除选择中的数据吗？", "请确认", function() {
 			ajax("post", "/sales/delete.action", {
 				id : selData.id

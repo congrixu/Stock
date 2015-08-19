@@ -53,7 +53,7 @@ public class Constant {
 	 */
 	public enum SalesEnum {
 
-		delete("0", "删除"), newCreate("1", "新建"), outLib("3", "出库");
+		delete("0", "删除"), newCreate("1", "新建"), outLib("2", "出库");
 		private String id;
 		private String text;
 
