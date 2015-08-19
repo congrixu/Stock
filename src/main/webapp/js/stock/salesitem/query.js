@@ -151,4 +151,10 @@ $(function() {
 	$("#return_btn").click(function() {
 		load("/sales/query.action", null, $("#main"), null);
 	});
+
+	// 如果是已出库商品，销售明细不允许被 操作
+	var salesState = $("#sales_state").val();
+	if (salesState == '3') {
+		$("#oper_btn_div").hide();
+	}
 });

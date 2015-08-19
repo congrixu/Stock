@@ -73,6 +73,8 @@ public class SalesAction extends BaseActionSupport {
 		map.put("totalNum", "totalNum");
 		map.put("totalPrice", "totalPrice");
 		map.put("remark", "remark");
+		map.put("stateStr", "stateStr");
+		map.put("state", "state");
 
 		new SendData().sendDataJson(map, list, total, getResponse());
 	}
@@ -110,6 +112,19 @@ public class SalesAction extends BaseActionSupport {
 		SuccessOrFailure result = SuccessOrFailure.SUCCESS;
 		try {
 			salesService.saveOrModify(sales);
+		} catch (Exception e) {
+			result = SuccessOrFailure.FAILURE;
+			e.printStackTrace();
+		}
+		HttpUtils.write(JsonUtils.toJsonString(result));
+	}
+
+	@Action(value = "outlib")
+	public void outlib() throws Exception {
+		SuccessOrFailure result = SuccessOrFailure.SUCCESS;
+		try {
+			String id = getRequest().getParameter("id");
+			salesService.outlib(id);
 		} catch (Exception e) {
 			result = SuccessOrFailure.FAILURE;
 			e.printStackTrace();

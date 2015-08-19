@@ -19,6 +19,7 @@ import com.rxv5.platform.util.JsonUtils;
 import com.rxv5.platform.util.SendData;
 import com.rxv5.stock.Constant;
 import com.rxv5.stock.entity.SalesItem;
+import com.rxv5.stock.entity.SalesOrder;
 import com.rxv5.stock.sales.service.SalesItemService;
 import com.rxv5.stock.sales.service.SalesService;
 
@@ -46,7 +47,9 @@ public class SalesItemAction extends BaseActionSupport {
 	@Action(value = "query")
 	public String query() throws Exception {
 		String salesId = getParameterFromRequest("salesId");
-		getRequest().setAttribute("salesId", salesId);
+
+		SalesOrder so = salesService.get(salesId);
+		getRequest().setAttribute("so", so);
 		return dispatcher("/WEB-INF/stock/salesitem/query.jsp");
 	}
 

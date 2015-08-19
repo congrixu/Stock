@@ -12,15 +12,20 @@
 				<td style="width:10px">&nbsp;</td>
 				<td>&nbsp;</td>
 				<td align="right">
-					<a href="#" id="return_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-back',plain:true">返回</a>
-					<a href="#" id="add_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-add',plain:true">添加</a>
-					<a href="#" id="modify_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-edit',plain:true">修改</a>
-					<a href="#" id="delete_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-remove',plain:true">删除</a>
+					<span>
+						<a href="#" id="return_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-back',plain:true">返回</a>
+					</span>
+					<span id="oper_btn_div">
+						<a href="#" id="add_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-add',plain:true">添加</a>
+						<a href="#" id="modify_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-edit',plain:true">修改</a>
+						<a href="#" id="delete_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-remove',plain:true">删除</a>
+					</span>
 				</td>
 				<td style="width:30px">&nbsp;</td>
 			</tr>
 		</table>
-		<input type="hidden" id="sales_id" value="${requestScope.salesId}">
+		<input type="hidden" id="sales_id" value="${requestScope.so.id}">
+		<input type="hidden" id="sales_state" value="${requestScope.so.state}">
 	</div>
 	<table id="sales_item_table">
 	</table>
