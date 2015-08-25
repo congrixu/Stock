@@ -37,7 +37,7 @@
 	<table class='print-table'>
 		<thead>
 			<tr>
-				<td align="center" colspan="4"><h3>商品明细</h3></td>
+				<td align="center" colspan="5"><h3>商品明细</h3></td>
 			</tr>
 			<tr>
 				<th >商品名称</th>
