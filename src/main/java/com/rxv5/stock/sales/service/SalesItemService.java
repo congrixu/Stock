@@ -1,5 +1,6 @@
 package com.rxv5.stock.sales.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -74,6 +75,10 @@ public class SalesItemService {
 		Object totalPrice = total[1];
 		Double _totalPrice = totalPrice == null ? 0d : Double.valueOf(String.valueOf(totalPrice));
 		salesDao.updateTotal(salesId, _totalNum, _totalPrice);
+	}
+
+	public List<SalesItem> queryBySalesId(String salesId) {
+		return salesItemDao.selectBySalesId(salesId);
 	}
 
 }

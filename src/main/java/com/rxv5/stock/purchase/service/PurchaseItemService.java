@@ -1,5 +1,6 @@
 package com.rxv5.stock.purchase.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -61,5 +62,9 @@ public class PurchaseItemService {
 	private void sumTotal(String purchaseId) {
 		Double total = purchaseItemDao.selectSumTotal(purchaseId);
 		purchaseDao.updateTotal(purchaseId, total);
+	}
+
+	public List<PurchaseItem> queryByPurchaseId(String purchaseId) {
+		return purchaseItemDao.selectByPurchaseId(purchaseId);
 	}
 }

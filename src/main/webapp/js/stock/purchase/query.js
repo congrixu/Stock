@@ -211,7 +211,16 @@ $(function() {
 				}
 			}, null);
 		});
+	});
 
+	$("#print_btn").click(function() {
+		var selData = $("#purchase_table").datagrid("getSelected");
+		if (!selData) {
+			alertMsg("请选择您要打印的数据！");
+			return false;
+		}
+		var url = CONTEXT_PATH + "/purchase/print.action?id=" + selData.id;
+		window.open(url);
 	});
 
 });

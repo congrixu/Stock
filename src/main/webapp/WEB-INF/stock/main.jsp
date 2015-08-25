@@ -35,6 +35,13 @@
          <li><a href="/storage/query.action">库存管理</a></li>
          <li><a href="/commodity/query.action">商品管理</a></li>
          <li><a href="/supplier/query.action">供应商管理</a></li>
+         <%-- <li>
+         	<span>统计</span>
+         	<ul>
+         		<li><a href="/report/sumtotal.action">总量统计</a></li>
+         		<li><a href="#">商品统计</a></li>
+         	</ul>
+         </li> --%>
       </ul>
     </div>
     <div id="main" data-options="region:'center'">

@@ -1,5 +1,6 @@
 package com.rxv5.stock.purchase.action;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,9 @@ import com.rxv5.platform.util.HttpUtils;
 import com.rxv5.platform.util.JsonUtils;
 import com.rxv5.platform.util.SendData;
 import com.rxv5.stock.Constant;
+import com.rxv5.stock.entity.PurchaseItem;
 import com.rxv5.stock.entity.PurchaseOrder;
+import com.rxv5.stock.purchase.service.PurchaseItemService;
 import com.rxv5.stock.purchase.service.PurchaseService;
 
 /**
@@ -38,6 +41,9 @@ public class PurchaseAction extends BaseActionSupport {
 
 	@Resource
 	private PurchaseService purchaseService;
+
+	@Resource
+	private PurchaseItemService purchaseItmeService;
 
 	@Action(value = "query")
 	public String query() throws Exception {
@@ -128,6 +134,17 @@ public class PurchaseAction extends BaseActionSupport {
 			e.printStackTrace();
 		}
 		HttpUtils.write(JsonUtils.toJsonString(result));
+	}
+
+	@Action(value = "print")
+	public String print() {
+		String id = getParameterFromRequest("id");
+		PurchaseOrder purchase = purchaseService.get(id);
+		List<PurchaseItem> items = purchaseItmeService.queryByPurchaseId(id);
+		getRequest().setAttribute("purchase", purchase);
+		getRequest().setAttribute("items", items);
+		getRequest().setAttribute("currentDate", new Date());
+		return dispatcher("/WEB-INF/stock/purchase/print.jsp");
 	}
 
 	public PurchaseOrder getPurchase() {
