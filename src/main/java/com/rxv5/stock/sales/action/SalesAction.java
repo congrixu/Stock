@@ -1,5 +1,6 @@
 package com.rxv5.stock.sales.action;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,9 @@ import com.rxv5.platform.util.HttpUtils;
 import com.rxv5.platform.util.JsonUtils;
 import com.rxv5.platform.util.SendData;
 import com.rxv5.stock.Constant;
+import com.rxv5.stock.entity.SalesItem;
 import com.rxv5.stock.entity.SalesOrder;
+import com.rxv5.stock.sales.service.SalesItemService;
 import com.rxv5.stock.sales.service.SalesService;
 
 @Controller
@@ -34,6 +37,9 @@ public class SalesAction extends BaseActionSupport {
 
 	@Resource
 	private SalesService salesService;
+
+	@Resource
+	private SalesItemService salesItemService;
 
 	@Action(value = "query")
 	public String query() throws Exception {
@@ -130,6 +136,17 @@ public class SalesAction extends BaseActionSupport {
 			e.printStackTrace();
 		}
 		HttpUtils.write(JsonUtils.toJsonString(result));
+	}
+
+	@Action(value = "print")
+	public String print() {
+		String id = getParameterFromRequest("id");
+		SalesOrder sales = salesService.get(id);
+		List<SalesItem> items = salesItemService.queryBySalesId(id);
+		getRequest().setAttribute("sales", sales);
+		getRequest().setAttribute("items", items);
+		getRequest().setAttribute("currentDate", new Date());
+		return dispatcher("/WEB-INF/stock/sales/print.jsp");
 	}
 
 	public SalesOrder getSales() {

@@ -28,7 +28,7 @@ $(function() {
 	});
 	columns.push({
 		field : 'salesDate',
-		title : '售售日期',
+		title : '销售日期',
 		width : 120,
 		sortable : true
 	});
@@ -206,7 +206,7 @@ $(function() {
 		}
 
 		var state = selData.state;
-		if ("3" == state) {
+		if ("2" == state) {
 			alertMsg("当前销售单已出库！");
 			return false;
 		}
@@ -222,6 +222,16 @@ $(function() {
 			}, null);
 		});
 
+	});
+
+	$("#print_btn").click(function() {
+		var selData = $("#sales_table").datagrid("getSelected");
+		if (!selData) {
+			alertMsg("请选择您要打印的数据！");
+			return false;
+		}
+		var url = CONTEXT_PATH + "/sales/print.action?id=" + selData.id;
+		window.open(url);
 	});
 
 });

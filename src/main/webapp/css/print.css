@@ -1,0 +1,20 @@
+.print-table {
+	border: solid 2px #000000;
+	width: 90%;
+	margin: auto;
+}
+
+.print-table th {
+	border: solid #000000;
+	border-width: 1px 1px 1px 1px;
+}
+
+.print-table td {
+	border: solid #000000;
+	border-width: 1px 1px 1px 1px;
+}
+
+.noprint {
+	font-family: "宋体";
+	font-size: 9pt;
+}
