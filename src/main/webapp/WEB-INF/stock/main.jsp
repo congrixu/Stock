@@ -22,7 +22,7 @@
 	 	  <h1 style="margin-top:-5px;padding:0px 0 5px 10px;font-weight: bold; color:#FFFFFF;">铭家灯饰库存管理系统</h1>
 	      <div style="position:absolute;right:30px;bottom:10px;">
 	        <span>
-	         <input type="button" id="logout_btn" class="btn" value="退出">
+	         <input type="button" id="logout_btn" class="btn btn-sm btn-info" value="退出">
 	        </span>
 	      </div>
  	  </div>
