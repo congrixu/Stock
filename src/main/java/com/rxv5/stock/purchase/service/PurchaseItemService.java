@@ -53,6 +53,7 @@ public class PurchaseItemService {
 			_item.setNum(item.getNum());
 			_item.setPrice(item.getPrice());
 			_item.setTotalPrice(price * num);
+			_item.setRemark(item.getRemark());
 			purchaseItemDao.update(_item);
 		}
 

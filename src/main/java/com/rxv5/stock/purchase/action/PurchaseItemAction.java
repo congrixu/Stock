@@ -74,6 +74,7 @@ public class PurchaseItemAction extends BaseActionSupport {
 		map.put("num", "num");
 		map.put("price", "price");
 		map.put("totalPrice", "totalPrice");
+		map.put("remark", "remark");
 
 		new SendData().sendDataJson(map, list, total, getResponse());
 	}

@@ -41,6 +41,11 @@ $(function() {
 		title : '总价格',
 		width : 120
 	});
+	columns.push({
+		field : 'remark',
+		title : '备注',
+		width : 200
+	});
 
 	var opts = {};
 	opts.title = "销售明细管理";
@@ -71,7 +76,7 @@ $(function() {
 	$("#add_btn").click(function() {
 		var option = {};
 		option.width = 400;
-		option.height = 240;
+		option.height = 280;
 		var win = loadDialogPage(null, "添加销售单", "/salesitem/edit.action", [ {
 			text : "确定",
 			iconCls : "easyui-icon-save",
@@ -89,7 +94,7 @@ $(function() {
 	$("#modify_btn").click(function() {
 		var option = {};
 		option.width = 400;
-		option.height = 240;
+		option.height = 280;
 
 		var selData = $("#sales_item_table").datagrid("getSelected");
 		if (!selData) {
@@ -146,6 +151,8 @@ $(function() {
 		param["salesItem.num"] = num;
 		param["salesItem.price"] = price;
 		param["salesItem.salesOrder.id"] = $("#sales_id").val();
+		param["salesItem.remark"] = $("#remark").val();
+
 		return param;
 	}
 	$("#return_btn").click(function() {
@@ -154,7 +161,7 @@ $(function() {
 
 	// 如果是已出库商品，销售明细不允许被 操作
 	var salesState = $("#sales_state").val();
-	if (salesState == '3') {
+	if (salesState == '2') {
 		$("#oper_btn_div").hide();
 	}
 });

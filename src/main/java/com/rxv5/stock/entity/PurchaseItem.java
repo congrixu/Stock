@@ -53,6 +53,9 @@ public class PurchaseItem implements Serializable {
 	@JoinColumn(name = "PURCHASE_ORDER_ID")
 	private PurchaseOrder purchaseOrder;//采购单
 
+	@Column(name = "REMARK_", length = 2000)
+	private String remark;//备注
+
 	public String getId() {
 		return id;
 	}
@@ -109,10 +112,18 @@ public class PurchaseItem implements Serializable {
 		this.purchaseOrder = purchaseOrder;
 	}
 
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
 	@Override
 	public String toString() {
 		return "PurchaseItem [id=" + id + ", cdy=" + cdy + ", clothes=" + clothes + ", num=" + num + ", price=" + price
-				+ ", totalPrice=" + totalPrice + ", purchaseOrder=" + purchaseOrder + "]";
+				+ ", totalPrice=" + totalPrice + ", purchaseOrder=" + purchaseOrder + ", remark=" + remark + "]";
 	}
 
 }

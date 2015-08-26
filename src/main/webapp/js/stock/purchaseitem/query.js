@@ -35,6 +35,11 @@ $(function() {
 	columns.push({
 		field : 'totalPrice',
 		title : '总价格',
+		width : 120
+	});
+	columns.push({
+		field : 'remark',
+		title : '备注',
 		width : 200
 	});
 
@@ -82,7 +87,7 @@ $(function() {
 	$("#add_btn").click(function() {
 		var option = {};
 		option.width = 400;
-		option.height = 250;
+		option.height = 275;
 		var win = loadDialogPage(null, "添加采购单", "/purchaseitem/edit.action", [ {
 			text : "确定",
 			iconCls : "easyui-icon-save",
@@ -100,7 +105,7 @@ $(function() {
 	$("#modify_btn").click(function() {
 		var option = {};
 		option.width = 400;
-		option.height = 250;
+		option.height = 275;
 
 		var selData = $("#purchase_item_table").datagrid("getSelected");
 		if (!selData) {
@@ -165,6 +170,7 @@ $(function() {
 		param["item.num"] = num;
 		param["item.price"] = price;
 		param["item.id"] = $("#supplier_item_id").val();
+		param["item.remark"] = $("#remark").val();
 
 		return param;
 	}

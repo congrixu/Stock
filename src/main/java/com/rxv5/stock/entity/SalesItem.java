@@ -55,6 +55,9 @@ public class SalesItem implements Serializable {
 	@JoinColumn(name = "SALES_ORDER_ID")
 	private SalesOrder salesOrder;//销售单
 
+	@Column(name = "REMARK_", length = 2000)
+	private String remark;//备注
+
 	public String getId() {
 		return id;
 	}
@@ -109,6 +112,20 @@ public class SalesItem implements Serializable {
 
 	public void setSalesOrder(SalesOrder salesOrder) {
 		this.salesOrder = salesOrder;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	@Override
+	public String toString() {
+		return "SalesItem [id=" + id + ", commodity=" + commodity + ", sup=" + sup + ", num=" + num + ", price="
+				+ price + ", totalPrice=" + totalPrice + ", salesOrder=" + salesOrder + ", remark=" + remark + "]";
 	}
 
 }
