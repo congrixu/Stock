@@ -11,27 +11,27 @@
 	<input type="hidden" id="sales_id" value="${requestScope.sales.id }">
 	<form class="form-horizontal">
 	  <div class="form-group">
-	    <label for="client_name" class="col-sm-1 control-label">客户名称：</label>
-	    <div class="col-sm-11">
+	    <label for="client_name" class="col-sm-4 control-label">客户名称：</label>
+	    <div class="col-sm-7">
 	      <input type="text" class="form-control" id="client_name_form" placeholder="客户名称" value="${requestScope.sales.clientName}">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="client_phone" class="col-sm-1 control-label">客户电话：</label>
-	    <div class="col-sm-11">
+	    <label for="client_phone" class="col-sm-4 control-label">客户电话：</label>
+	    <div class="col-sm-7">
 	      <input type="text" class="form-control" id="client_phone_form" placeholder="客户电话" value="${requestScope.sales.clientPhone}">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="client_addr" class="col-sm-1 control-label">客户地址：</label>
-	    <div class="col-sm-11">
-	      <textarea rows="" cols="" id="client_addr">${requestScope.sales.clientAddr}</textarea>
+	    <label for="client_addr" class="col-sm-4 control-label">客户地址：</label>
+	    <div class="col-sm-7">
+	      <textarea rows="" cols="" id="client_addr" class="form-control" >${requestScope.sales.clientAddr}</textarea>
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="remark" class="col-sm-1 control-label">备注：</label>
-	    <div class="col-sm-11">
-	      <textarea rows="" cols="" id="remark">${requestScope.sales.remark}</textarea>
+	    <label for="remark" class="col-sm-4 control-label">备注：</label>
+	    <div class="col-sm-7">
+	      <textarea rows="" cols="" id="remark" class="form-control" >${requestScope.sales.remark}</textarea>
 	    </div>
 	  </div>
 	</form>

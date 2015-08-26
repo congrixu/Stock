@@ -87,7 +87,7 @@ $(function() {
 	$("#add_btn").click(function() {
 		var option = {};
 		option.width = 400;
-		option.height = 275;
+		option.height = 310;
 		var win = loadDialogPage(null, "添加采购单", "/purchaseitem/edit.action", [ {
 			text : "确定",
 			iconCls : "easyui-icon-save",
@@ -105,7 +105,7 @@ $(function() {
 	$("#modify_btn").click(function() {
 		var option = {};
 		option.width = 400;
-		option.height = 275;
+		option.height = 310;
 
 		var selData = $("#purchase_item_table").datagrid("getSelected");
 		if (!selData) {

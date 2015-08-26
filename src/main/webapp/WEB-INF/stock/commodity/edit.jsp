@@ -11,21 +11,21 @@
 	<input type="hidden" id="commodity_id" value="${requestScope.commodity.id }">
 	<form class="form-horizontal">
 	  <div class="form-group">
-	    <label for="name_" class="col-sm-1 control-label">名称：</label>
-	    <div class="col-sm-11">
+	    <label for="name_" class="col-sm-4 control-label">名称：</label>
+	    <div class="col-sm-7">
 	      <input type="text" class="form-control" id="name_"  placeholder="商品名称" value="${requestScope.commodity.name}">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="type_" class="col-sm-1 control-label">型号：</label>
-	    <div class="col-sm-11">
+	    <label for="type_" class="col-sm-4 control-label">型号：</label>
+	    <div class="col-sm-7">
 	      <input type="text" class="form-control" id="type_" placeholder="型号" value="${requestScope.commodity.type}">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="remark" class="col-sm-1 control-label">备注：</label>
-	    <div class="col-sm-11">
-	      <textarea rows="" cols="" id="remark">${requestScope.commodity.remark}</textarea>
+	    <label for="remark" class="col-sm-4 control-label">备注：</label>
+	    <div class="col-sm-7">
+	      <textarea  class="form-control" id="remark">${requestScope.commodity.remark}</textarea>
 	    </div>
 	  </div>
 	</form>

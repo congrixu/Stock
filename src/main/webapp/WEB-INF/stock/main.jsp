@@ -7,10 +7,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>铭家灯饰库存管理系统</title>
+    <link href="${CONTEXT_PATH}/js/lib/bootstrap-3.3.5-dist/css/bootstrap.css?version=${BUILD_TIME}" rel="stylesheet" type="text/css">
     <link href="${CONTEXT_PATH}/js/lib/jquery-easyui/1.3.1/css/icon.css?version=${BUILD_TIME}" rel="stylesheet" type="text/css">
     <link href="${CONTEXT_PATH}/js/lib/jquery-easyui/1.3.1/css/defaule/easyui.css?version=${BUILD_TIME}" rel="stylesheet" type="text/css">
-    <link href="${CONTEXT_PATH}/js/lib/bootstrap/css/bootstrap.css?version=${BUILD_TIME}" rel="stylesheet" type="text/css">
-    <link href="${CONTEXT_PATH}/js/lib/bootstrap/css/bootstrap-responsive.css?version=${BUILD_TIME}" rel="stylesheet" type="text/css">
     <link href="${CONTEXT_PATH}/css/common.css?version=${BUILD_TIME}" rel="stylesheet" type="text/css">
     <script type="text/javascript">
 	    window.CONTEXT_PATH = '${CONTEXT_PATH}';
@@ -35,13 +34,13 @@
          <li><a href="/storage/query.action">库存管理</a></li>
          <li><a href="/commodity/query.action">商品管理</a></li>
          <li><a href="/supplier/query.action">供应商管理</a></li>
-         <%-- <li>
+         <li>
          	<span>统计</span>
          	<ul>
          		<li><a href="/report/sumtotal.action">总量统计</a></li>
          		<li><a href="#">商品统计</a></li>
          	</ul>
-         </li> --%>
+         </li>
       </ul>
     </div>
     <div id="main" data-options="region:'center'">
@@ -52,7 +51,6 @@
     </div>
     <script src="${CONTEXT_PATH}/js/lib/json2.js?version=${BUILD_TIME}" type="text/javascript"></script>
     <script src="${CONTEXT_PATH}/js/lib/jquery/jquery-1.8.0.min.js?version=${BUILD_TIME}" type="text/javascript"></script>
-    <script src="${CONTEXT_PATH}/js/lib/bootstrap/js/bootstrap.js?version=${BUILD_TIME}" type="text/javascript"></script>
     <script src="${CONTEXT_PATH}/js/lib/jquery-easyui/1.3.1/jquery.easyui.min.js?version=${BUILD_TIME}" type="text/javascript"></script>
     <script src="${CONTEXT_PATH}/js/lib/jquery-easyui/1.3.1/easyui-lang-zh_CN.js?version=${BUILD_TIME}" type="text/javascript"></script>
     <script src="${CONTEXT_PATH}/js/lib/jstree/pre1.0_fix_1/jquery.jstree.js?version=${BUILD_TIME}" type="text/javascript"></script>
