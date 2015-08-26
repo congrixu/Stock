@@ -59,6 +59,7 @@ public class SalesItemService {
 			_item.setPrice(item.getPrice());
 			_item.setSup(item.getSup());
 			_item.setTotalPrice(price * num);
+			_item.setRemark(item.getRemark());
 			salesItemDao.update(_item);
 
 			////2.再将新修改的库存从库存中减去

@@ -36,6 +36,12 @@
 	      <input type="text" class="form-control" id="price" placeholder="销售单价" value="${requestScope.item.price}">
 	    </div>
 	  </div>
+	  <div class="form-group">
+	    <label for="remark" class="col-sm-1 control-label">备注：</label>
+	    <div class="col-sm-11">
+	      <textarea rows="" cols="" id="remark">${requestScope.item.remark}</textarea>
+	    </div>
+	  </div>
 	</form>
 	<div id="choose_commodity_div"></div>
 	<div id="choose_supplier_div"></div>
