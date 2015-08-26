@@ -10,8 +10,8 @@
 <body>
 	<form class="form-horizontal">
 	  <div class="form-group">
-	    <label for="inventory_num" class="col-sm-1 control-label">盘点数量：</label>
-	    <div class="col-sm-11">
+	    <label for="inventory_num" class="col-sm-4 control-label">盘点数量</label>
+	    <div class="col-sm-7">
 	      <input type="text" class="form-control" id="inventory_num" placeholder="盘点数量" >
 	    </div>
 	  </div>

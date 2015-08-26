@@ -110,7 +110,7 @@ $(function() {
 	$("#add_btn").click(function() {
 		var option = {};
 		option.width = 400;
-		option.height = 290;
+		option.height = 320;
 		var win = loadDialogPage(null, "添加销售单", "/sales/edit.action", [ {
 			text : "确定",
 			iconCls : "easyui-icon-save",
@@ -128,7 +128,7 @@ $(function() {
 	$("#modify_btn").click(function() {
 		var option = {};
 		option.width = 400;
-		option.height = 290;
+		option.height = 320;
 
 		var selData = $("#sales_table").datagrid("getSelected");
 		if (!selData) {

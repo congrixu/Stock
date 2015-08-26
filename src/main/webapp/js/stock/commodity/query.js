@@ -60,7 +60,7 @@ $(function() {
 	$("#add_btn").click(function() {
 		var option = {};
 		option.width = 380;
-		option.height = 220;
+		option.height = 250;
 		var win = loadDialogPage(null, "添加商品", "/commodity/edit.action", [ {
 			text : "确定",
 			iconCls : "easyui-icon-save",
@@ -78,7 +78,7 @@ $(function() {
 	$("#modify_btn").click(function() {
 		var option = {};
 		option.width = 380;
-		option.height = 220;
+		option.height = 250;
 
 		var selData = $("#commodity_table").datagrid("getSelected");
 		if (!selData) {

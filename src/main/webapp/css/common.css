@@ -12,6 +12,7 @@ input {
 
 .pagination {
 	margin: 0;
+	display: block;
 }
 
 .datagrid-toolbar {
@@ -22,16 +23,19 @@ a img {
 	border: 0;
 }
 
-#menu,#main {
-	padding: 10px;
-	overflow: auto;
+#menu, #main {
+	padding: 5px 10px 5px 10px;
+	overflow: hidden;
 }
-
+a.l-btn span.l-btn-left {
+    height: 24px;
+}
 .dialog-button {
 	position: absolute;
 	bottom: 4px;
-	width: 95%;
+	width: 96%;
 	margin-bottom: 2px;
+	box-sizing:
 }
 
 textarea {
@@ -55,7 +59,7 @@ textarea {
 	text-decoration: none;
 }
 
-.ui-state-default,.ui-widget-header .ui-state-default {
+.ui-state-default, .ui-widget-header .ui-state-default {
 	border: 1px solid #aed0ea;
 	background: #d7ebf9 url(../img/ui-bg_glass_80_d7ebf9_1x400.png) 50% 50%
 		repeat-x;
@@ -63,13 +67,38 @@ textarea {
 	color: #2779aa;
 }
 
-.ui-state-default a,.ui-state-default a:visited {
+.ui-state-default a, .ui-state-default a:visited {
 	color: #2779aa;
 	text-decoration: none;
 }
 
-.form-horizontal .form-group{
-	margin-top: 5px; 
+.form-horizontal .form-group {
+	margin-top: 5px;
 	margin-bottom: 5px;
 }
+/*bootstrap兼容问题和easyui的bug*/
+.panel-title {
+	font-size: 13px;
+}
 
+.layout-panel>.panel-header, .datagrid>.panel-header {
+	line-height: 23px;
+}
+
+.panel-header, .panel-body {
+	padding: 0px;
+}
+
+.messager-body {
+	padding: 5px 10px 5px 10px;
+}
+
+.datagrid, .combo-p {
+	border: solid 1px #D4D4D4;
+}
+
+.datagrid * {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}

@@ -11,35 +11,35 @@
 	<input type="hidden" id="sales_item_id" value="${requestScope.item.id }">
 	<form class="form-horizontal">
 	  <div class="form-group">
-	    <label for="name_" class="col-sm-1 control-label">商品名称：</label>
-	    <div class="col-sm-11">
+	    <label for="name_" class="col-sm-4 control-label">商品名称：</label>
+	    <div class="col-sm-7">
 	      <input type="text" class="form-control" id="cdy_name"  placeholder="商品名称" value="${requestScope.item.commodity.name}">
 	  	   <input type="hidden" id="cdy_id" value="${requestScope.item.commodity.id}">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="supplier_name" class="col-sm-1 control-label">供应商：</label>
-	    <div class="col-sm-11">
+	    <label for="supplier_name" class="col-sm-4 control-label">供应商：</label>
+	    <div class="col-sm-7">
 	      <input type="text" class="form-control" id="supplier_name" placeholder="供应商" value="${requestScope.item.sup.name}">
 	      <input type="hidden" id="supplier_id" value="${requestScope.item.sup.id}">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="num" class="col-sm-1 control-label">销售数量：</label>
-	    <div class="col-sm-11">
+	    <label for="num" class="col-sm-4 control-label">销售数量：</label>
+	    <div class="col-sm-7">
 	      <input type="text" class="form-control" id="num" placeholder="销售数量"  value="${requestScope.item.num}">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="price" class="col-sm-1 control-label">销售单价：</label>
-	    <div class="col-sm-11">
+	    <label for="price" class="col-sm-4 control-label">销售单价：</label>
+	    <div class="col-sm-7">
 	      <input type="text" class="form-control" id="price" placeholder="销售单价" value="${requestScope.item.price}">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="remark" class="col-sm-1 control-label">备注：</label>
-	    <div class="col-sm-11">
-	      <textarea rows="" cols="" id="remark">${requestScope.item.remark}</textarea>
+	    <label for="remark" class="col-sm-4 control-label">备注：</label>
+	    <div class="col-sm-7">
+	      <textarea class="form-control" id="remark">${requestScope.item.remark}</textarea>
 	    </div>
 	  </div>
 	</form>
