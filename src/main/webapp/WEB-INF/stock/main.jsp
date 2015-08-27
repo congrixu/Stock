@@ -38,7 +38,7 @@
          	<span>统计</span>
          	<ul>
          		<li><a href="/report/sumtotal.action">总量统计</a></li>
-         		<li><a href="#">商品统计</a></li>
+         		<li><a href="/report/sumcommodityview.action">商品销售统计</a></li>
          	</ul>
          </li>
       </ul>

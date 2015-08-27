@@ -1,5 +1,9 @@
 package com.rxv5.stock.report.action;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -9,6 +13,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.rxv5.platform.common.BaseActionSupport;
+import com.rxv5.platform.util.SendData;
+import com.rxv5.stock.Constant;
+import com.rxv5.stock.bean.SalesBean;
 import com.rxv5.stock.bean.TotalBean;
 import com.rxv5.stock.report.service.ReportService;
 
@@ -21,6 +28,7 @@ import com.rxv5.stock.report.service.ReportService;
 @Namespace("/report")
 @Scope("prototype")
 @ParentPackage("default")
+@SuppressWarnings("unchecked")
 public class ReportAction extends BaseActionSupport {
 
 	private static final long serialVersionUID = 2672436906134129086L;
@@ -37,6 +45,35 @@ public class ReportAction extends BaseActionSupport {
 		getRequest().setAttribute("startDate", startDate);
 		getRequest().setAttribute("endDate", endDate);
 		return dispatcher("/WEB-INF/stock/report/sumtotal.jsp");
+	}
+
+	@Action(value = "sumcommodityview")
+	public String sumCommodityView() throws Exception {
+		return dispatcher("/WEB-INF/stock/report/sumcommodity.jsp");
+	}
+
+	@Action(value = "sumcommodity")
+	public void sumCommodity() {
+		Integer page = getRequest().getParameter("page") == null ? 1 : Integer.valueOf(getRequest()
+				.getParameter("page"));
+		Integer rows = getRequest().getParameter("rows") == null ? Constant.DEFAULT_PAGE_SIZE : Integer
+				.valueOf(getRequest().getParameter("rows"));
+		String startDate = getParameterFromRequest("startDate");
+		String endDate = getParameterFromRequest("endDate");
+		String name = getParameterFromRequest("name");
+
+		Map<String, Object> result = reportService.sumCommodity(name, startDate, endDate, page, rows);
+		Long total = (Long) result.get("total");
+		List<SalesBean> list = (List<SalesBean>) result.get("list");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("commodityId", "commodityId");
+		map.put("commodityName", "commodityName");
+		map.put("commodityType", "commodityType");
+		map.put("totalNum", "totalNum");
+		map.put("totalPrice", "totalPrice");
+		map.put("storageNum", "storageNum");
+
+		new SendData().sendDataJson(map, list, total, getResponse());
 	}
 
 }
