@@ -1,11 +1,14 @@
 package com.rxv5.stock.report.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.rxv5.stock.bean.SalesBean;
 import com.rxv5.stock.bean.TotalBean;
 import com.rxv5.stock.report.dao.ReportDao;
 
@@ -55,4 +58,36 @@ public class ReportService {
 		}
 		return tb;
 	}
+
+	public Map<String, Object> sumCommodity(String name, String startDate, String endDate, final Integer page,
+			final Integer rows) {
+
+		List<SalesBean> sblist = new ArrayList<SalesBean>();
+		Map<String, Object> result = reportDao.sumCommodity(name, startDate, endDate, (page - 1) * rows, rows);
+		List<?> list = (List<?>) result.get("list");
+		if (list != null && list.size() > 0) {
+			for (Object objs : list) {
+				Object[] obj = (Object[]) objs;
+				String commodityId = (String) obj[0];
+				String commodityName = (String) obj[1];
+				String commodityType = (String) obj[2];
+				Long num = obj[3] == null ? 0l : Long.valueOf(String.valueOf(obj[3]));
+				Double totalPrice = obj[4] == null ? 0d : Double.valueOf(String.valueOf(obj[4]));
+				Long storageNum = obj[5] == null ? 0l : Long.valueOf(String.valueOf(obj[5]));
+
+				SalesBean sb = new SalesBean();
+				sb.setCommodityId(commodityId);
+				sb.setCommodityName(commodityName);
+				sb.setCommodityType(commodityType);
+				sb.setStorageNum(storageNum);
+				sb.setTotalNum(num);
+				sb.setTotalPrice(totalPrice);
+				sblist.add(sb);
+			}
+			result.put("list", sblist);
+		}
+
+		return result;
+	}
+
 }
