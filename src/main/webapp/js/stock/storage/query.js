@@ -67,7 +67,7 @@ $(function() {
 
 		var option = {};
 		option.width = 380;
-		option.height = 150;
+		option.height = 200;
 		var win = loadDialogPage(null, "盘点商品", "/storage/inventoryview.action", [ {
 			text : "确定",
 			iconCls : "easyui-icon-save",
@@ -109,6 +109,7 @@ $(function() {
 		param["inventory.num"] = inventoryNum;
 		param["inventory.firstNum"] = selData.num;
 		param["inventory.cdy.id"] = selData["cdy-id"];
+		param["inventory.remark"] = $("#inventory_remark").val();
 		return param;
 	}
 

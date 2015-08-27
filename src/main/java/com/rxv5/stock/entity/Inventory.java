@@ -45,6 +45,9 @@ public class Inventory implements Serializable {
 	@Column(name = "CREATE_DATE")
 	private Date createDate;//盘点日期
 
+	@Column(name = "REMARK_", length = 2000)
+	private String remark;//备注
+
 	public String getId() {
 		return id;
 	}
@@ -83,6 +86,14 @@ public class Inventory implements Serializable {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }
