@@ -15,6 +15,12 @@
 	      <input type="text" class="form-control" id="inventory_num" placeholder="盘点数量" >
 	    </div>
 	  </div>
+	  <div class="form-group">
+	    <label for="inventory_remark" class="col-sm-4 control-label">备注</label>
+	    <div class="col-sm-7">
+	      <textarea class="form-control" id="inventory_remark"></textarea>
+	    </div>
+	  </div>
 	</form>
 </body>
 </html>
