@@ -42,6 +42,7 @@
 	</div>
 	<table id="sales_table">
 	</table>
+	<div id="choose_fitters_div"></div>
     <script src="${CONTEXT_PATH}/js/stock/sales/query.js" type="text/javascript"></script>
 </body>
 </html>

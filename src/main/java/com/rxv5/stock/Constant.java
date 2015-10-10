@@ -88,4 +88,39 @@ public class Constant {
 
 	}
 
+	public enum UserStateEnum {
+		resignState("0", "离职"), entryState("1", "在职");
+		private String id;
+		private String text;
+
+		UserStateEnum(String id, String text) {
+			this.id = id;
+			this.text = text;
+		}
+
+		public static UserStateEnum byId(String id) {
+			for (UserStateEnum constant : UserStateEnum.values()) {
+				if (id.equals(constant.getId()))
+					return constant;
+			}
+			throw new IllegalArgumentException("No UserStateEnum constant with id=" + id + " exist.");
+		}
+
+		public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
+
+		public String getText() {
+			return text;
+		}
+
+		public void setText(String text) {
+			this.text = text;
+		}
+	}
+
 }

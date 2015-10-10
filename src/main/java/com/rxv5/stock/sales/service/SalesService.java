@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.rxv5.stock.Constant.SalesEnum;
 import com.rxv5.stock.entity.SalesItem;
 import com.rxv5.stock.entity.SalesOrder;
+import com.rxv5.stock.entity.User;
 import com.rxv5.stock.sales.dao.SalesDao;
 import com.rxv5.stock.sales.dao.SalesItemDao;
 import com.rxv5.stock.storage.dao.StorageDao;
@@ -71,9 +72,10 @@ public class SalesService {
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public void outlib(String salesId) {
+	public void outlib(String salesId, User fitter) {
 		SalesOrder so = salesDao.get(SalesOrder.class, salesId);
 		so.setState(SalesEnum.outLib.getId());
+		so.setFitters(fitter);
 		salesDao.update(so);
 		List<SalesItem> items = salesItemDao.selectBySalesId(salesId);
 		if (items != null && items.size() > 0) {
