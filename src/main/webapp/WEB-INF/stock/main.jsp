@@ -35,6 +35,12 @@
          <li><a href="/commodity/query.action">商品管理</a></li>
          <li><a href="/supplier/query.action">供应商管理</a></li>
          <li>
+         	<span>系统管理</span>
+         	<ul>
+         		<li><a href="/system/user/query.action">用户管理</a></li>
+         	</ul>
+         </li>
+         <li>
          	<span>统计</span>
          	<ul>
          		<li><a href="/report/sumtotal.action">总量统计</a></li>
