@@ -12,7 +12,7 @@
 				<td style="width:10px">&nbsp;</td>
 				<td>
 					名称：<input type="text" id="search_name">
-					<a href="#" id="query_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-search',plain:true">查询</a>
+					<a href="#" id="choose_user_query_btn" class="easyui-linkbutton" data-options="iconCls:'easyui-icon-search',plain:true">查询</a>
 				</td>
 				<td align="right">
 					&nbsp;

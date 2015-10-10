@@ -54,6 +54,16 @@ $(function() {
 		width : 100
 	});
 	columns.push({
+		field : 'user-name',
+		title : '销售人',
+		width : 100
+	});
+	columns.push({
+		field : 'fitters-name',
+		title : '安装人',
+		width : 100
+	});
+	columns.push({
 		field : 'remark',
 		title : '备注',
 		width : 250
@@ -211,15 +221,32 @@ $(function() {
 			return false;
 		}
 		confirmMsg("您确定要对当前销售单做出库处理吗？", "请确认", function() {
-			ajax("post", "/sales/outlib.action", {
-				id : selData.id
-			}, function(data) {
-				if (!data.success) {
-					alertMsg("操作失败！");
-				} else {
-					$("#sales_table").datagrid("reload");
+			var option = {};
+			option.width = 400;
+			option.height = 150;
+			var win = loadDialogPage(null, "商品出库", "/sales/setFitters.action?id=" + selData.id, [ {
+				text : "确定",
+				iconCls : "easyui-icon-save",
+				handler : function() {
+					var fitter = $("#fitters_user_id").val();
+					if (!fitter) {
+						alertMsg("请选择安装工！");
+						return false;
+					}
+
+					ajax("post", "/sales/outlib.action", {
+						id : selData.id,
+						fitter : fitter
+					}, function(data) {
+						if (!data.success) {
+							alertMsg("操作失败！");
+						} else {
+							$(win).dialog("close");
+							$("#sales_table").datagrid("reload");
+						}
+					}, null);
 				}
-			}, null);
+			} ], true, option, true);
 		});
 
 	});

@@ -5,12 +5,17 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 /**
  * 销售单
@@ -53,6 +58,16 @@ public class SalesOrder implements Serializable {
 
 	@Column(name = "STATE_", length = 2)
 	public String state;//状态
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@NotFound(action = NotFoundAction.IGNORE)
+	@JoinColumn(name = "USER_ID")
+	public User user;//销售人
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@NotFound(action = NotFoundAction.IGNORE)
+	@JoinColumn(name = "FITTER_USER_ID")
+	public User fitters;//安装人员
 
 	//非持久化属性
 	@Transient
@@ -138,11 +153,28 @@ public class SalesOrder implements Serializable {
 		this.stateStr = stateStr;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public User getFitters() {
+		return fitters;
+	}
+
+	public void setFitters(User fitters) {
+		this.fitters = fitters;
+	}
+
 	@Override
 	public String toString() {
 		return "SalesOrder [id=" + id + ", clientName=" + clientName + ", clientPhone=" + clientPhone + ", clientAddr="
 				+ clientAddr + ", salesDate=" + salesDate + ", remark=" + remark + ", totalNum=" + totalNum
-				+ ", totalPrice=" + totalPrice + ", state=" + state + "]";
+				+ ", totalPrice=" + totalPrice + ", state=" + state + ", user=" + user + ", fitters=" + fitters
+				+ ", stateStr=" + stateStr + "]";
 	}
 
 }

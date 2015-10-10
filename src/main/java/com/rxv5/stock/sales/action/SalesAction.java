@@ -21,6 +21,7 @@ import com.rxv5.platform.util.SendData;
 import com.rxv5.stock.Constant;
 import com.rxv5.stock.entity.SalesItem;
 import com.rxv5.stock.entity.SalesOrder;
+import com.rxv5.stock.entity.User;
 import com.rxv5.stock.sales.service.SalesItemService;
 import com.rxv5.stock.sales.service.SalesService;
 
@@ -48,10 +49,10 @@ public class SalesAction extends BaseActionSupport {
 
 	@Action(value = "queryjson")
 	public void queryJson() throws Exception {
-		Integer page = getRequest().getParameter("page") == null ? 1 : Integer.valueOf(getRequest()
-				.getParameter("page"));
-		Integer rows = getRequest().getParameter("rows") == null ? Constant.DEFAULT_PAGE_SIZE : Integer
-				.valueOf(getRequest().getParameter("rows"));
+		Integer page = getRequest().getParameter("page") == null ? 1
+				: Integer.valueOf(getRequest().getParameter("page"));
+		Integer rows = getRequest().getParameter("rows") == null ? Constant.DEFAULT_PAGE_SIZE
+				: Integer.valueOf(getRequest().getParameter("rows"));
 
 		String sort = getRequest().getParameter("sort");
 		String order = getRequest().getParameter("order");
@@ -81,6 +82,8 @@ public class SalesAction extends BaseActionSupport {
 		map.put("remark", "remark");
 		map.put("stateStr", "stateStr");
 		map.put("state", "state");
+		map.put("user-name", "user-name");
+		map.put("fitters-name", "fitters-name");
 
 		new SendData().sendDataJson(map, list, total, getResponse());
 	}
@@ -117,6 +120,11 @@ public class SalesAction extends BaseActionSupport {
 	public void save() throws Exception {
 		SuccessOrFailure result = SuccessOrFailure.SUCCESS;
 		try {
+			String id = sales.getId();
+			if (id == null || id.trim().length() <= 0) {
+				User user = (User) getSession().getAttribute(com.rxv5.platform.Constant.SESSION_USER);
+				sales.setUser(user);
+			}
 			salesService.saveOrModify(sales);
 		} catch (Exception e) {
 			result = SuccessOrFailure.FAILURE;
@@ -130,7 +138,10 @@ public class SalesAction extends BaseActionSupport {
 		SuccessOrFailure result = SuccessOrFailure.SUCCESS;
 		try {
 			String id = getRequest().getParameter("id");
-			salesService.outlib(id);
+			String fitter = getRequest().getParameter("fitter");
+			User user = new User();
+			user.setId(fitter);
+			salesService.outlib(id, user);
 		} catch (Exception e) {
 			result = SuccessOrFailure.FAILURE;
 			e.printStackTrace();
@@ -147,6 +158,18 @@ public class SalesAction extends BaseActionSupport {
 		getRequest().setAttribute("items", items);
 		getRequest().setAttribute("currentDate", new Date());
 		return dispatcher("/WEB-INF/stock/sales/print.jsp");
+	}
+
+	/**
+	 * 出库设置安装人员
+	 * @return
+	 * @throws Exception
+	 */
+	@Action(value = "setFitters")
+	public String setFitters() throws Exception {
+		String id = getRequest().getParameter("id");
+		getRequest().setAttribute("id", id);
+		return dispatcher("/WEB-INF/stock/sales/setFitters.jsp");
 	}
 
 	public SalesOrder getSales() {

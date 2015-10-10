@@ -64,7 +64,7 @@ $(function() {
 
 	grid("user_choose_user_table", "user_choose_oper_table", columns, "/system/user/queryjson.action", opts);
 
-	$("#query_btn").click(function() {
+	$("#choose_user_query_btn").click(function() {
 		var param = buildSearchData();
 		$("#user_choose_user_table").datagrid('load', param);
 	});
