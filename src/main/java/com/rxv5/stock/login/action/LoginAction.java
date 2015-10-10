@@ -45,6 +45,13 @@ public class LoginAction extends BaseActionSupport {
 			}
 			getSession().setAttribute(Constant.SESSION_USER, user);
 		}
+
+		boolean isAdmin = false;
+		String userid = user.getUserId();
+		if ("admin".equals(userid)) {
+			isAdmin = true;
+		}
+		getSession().setAttribute("isAdmin", isAdmin);
 		return redirect("/main.action");
 	}
 

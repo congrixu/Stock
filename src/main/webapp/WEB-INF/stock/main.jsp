@@ -30,6 +30,7 @@
     <div id="menu" data-options="region:'west',title:'&nbsp;',split:false" style="width:200px;">
       <ul>
          <li><a href="/sales/query.action">销售管理</a></li>
+         <s:if test="#session.isAdmin==true">
          <li><a href="/purchase/query.action">采购管理</a></li>
          <li><a href="/storage/query.action">库存管理</a></li>
          <li><a href="/commodity/query.action">商品管理</a></li>
@@ -47,6 +48,7 @@
          		<li><a href="/report/sumcommodityview.action">商品销售统计</a></li>
          	</ul>
          </li>
+         </s:if>
       </ul>
     </div>
     <div id="main" data-options="region:'center'">
