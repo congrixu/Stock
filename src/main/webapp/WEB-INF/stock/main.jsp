@@ -46,6 +46,8 @@
          	<ul>
          		<li><a href="/report/sumtotal.action">总量统计</a></li>
          		<li><a href="/report/sumcommodityview.action">商品销售统计</a></li>
+         		<li><a href="/report/sumsaluserview.action">销售人员销售统计</a></li>
+         		<li><a href="/report/sumfitteruserview.action">安装人员统计</a></li>
          	</ul>
          </li>
          </s:if>
