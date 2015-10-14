@@ -76,4 +76,63 @@ public class ReportAction extends BaseActionSupport {
 		new SendData().sendDataJson(map, list, total, getResponse());
 	}
 
+	/**
+	 * 销售人员销售情况统计
+	 */
+	@Action(value = "sumsaluserview")
+	public String sumSalUserView() throws Exception {
+		return dispatcher("/WEB-INF/stock/report/sumsaluser.jsp");
+	}
+
+	@Action(value = "sumsaluser")
+	public void sumSalUser() {
+		Integer page = getRequest().getParameter("page") == null ? 1 : Integer.valueOf(getRequest()
+				.getParameter("page"));
+		Integer rows = getRequest().getParameter("rows") == null ? Constant.DEFAULT_PAGE_SIZE : Integer
+				.valueOf(getRequest().getParameter("rows"));
+		String startDate = getParameterFromRequest("startDate");
+		String endDate = getParameterFromRequest("endDate");
+		String userName = getParameterFromRequest("userName");
+		Map<String, Object> result = reportService.sumSalUser(userName, startDate, endDate, page, rows);
+
+		Long total = (Long) result.get("total");
+		List<SalesBean> list = (List<SalesBean>) result.get("list");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("total", "####.####");
+		map.put("count", "####");
+		map.put("userId", "userId");
+		map.put("userName", "userName");
+		new SendData().sendDataJson(map, list, total, getResponse());
+	}
+
+	/**
+	 * 安装人员统计
+	 * @return
+	 * @throws Exception
+	 */
+	@Action(value = "sumfitteruserview")
+	public String sumFitteruserView() throws Exception {
+		return dispatcher("/WEB-INF/stock/report/sumfitteruser.jsp");
+	}
+
+	@Action(value = "sumfitteruser")
+	public void sumFitteruser() {
+		Integer page = getRequest().getParameter("page") == null ? 1 : Integer.valueOf(getRequest()
+				.getParameter("page"));
+		Integer rows = getRequest().getParameter("rows") == null ? Constant.DEFAULT_PAGE_SIZE : Integer
+				.valueOf(getRequest().getParameter("rows"));
+		String startDate = getParameterFromRequest("startDate");
+		String endDate = getParameterFromRequest("endDate");
+		String userName = getParameterFromRequest("userName");
+		Map<String, Object> result = reportService.sumFitterUser(userName, startDate, endDate, page, rows);
+
+		Long total = (Long) result.get("total");
+		List<SalesBean> list = (List<SalesBean>) result.get("list");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("count", "####");
+		map.put("userId", "userId");
+		map.put("userName", "userName");
+		new SendData().sendDataJson(map, list, total, getResponse());
+	}
+
 }

@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.rxv5.stock.bean.SalesBean;
+import com.rxv5.stock.bean.SalesUserBean;
 import com.rxv5.stock.bean.TotalBean;
 import com.rxv5.stock.report.dao.ReportDao;
 
@@ -82,6 +83,58 @@ public class ReportService {
 				sb.setStorageNum(storageNum);
 				sb.setTotalNum(num);
 				sb.setTotalPrice(totalPrice);
+				sblist.add(sb);
+			}
+			result.put("list", sblist);
+		}
+
+		return result;
+	}
+
+	public Map<String, Object> sumSalUser(String userName, String startDate, String endDate, final Integer page,
+			final Integer rows) {
+
+		List<SalesUserBean> sblist = new ArrayList<SalesUserBean>();
+		Map<String, Object> result = reportDao.sumSalUser(userName, startDate, endDate, (page - 1) * rows, rows);
+		List<?> list = (List<?>) result.get("list");
+		if (list != null && list.size() > 0) {
+			for (Object objs : list) {
+				Object[] obj = (Object[]) objs;
+				Double total = obj[0] == null ? 0d : Double.valueOf(String.valueOf(obj[0]));
+				Double count = obj[1] == null ? 0 : Double.valueOf(String.valueOf(obj[1]));
+				String userId = (String) obj[2];
+				String _userName = (String) obj[3];
+
+				SalesUserBean sb = new SalesUserBean();
+				sb.setTotal(total);
+				sb.setCount(count);
+				sb.setUserId(userId);
+				sb.setUserName(_userName);
+				sblist.add(sb);
+			}
+			result.put("list", sblist);
+		}
+
+		return result;
+	}
+
+	public Map<String, Object> sumFitterUser(String userName, String startDate, String endDate, final Integer page,
+			final Integer rows) {
+
+		List<SalesUserBean> sblist = new ArrayList<SalesUserBean>();
+		Map<String, Object> result = reportDao.sumFitterUser(userName, startDate, endDate, (page - 1) * rows, rows);
+		List<?> list = (List<?>) result.get("list");
+		if (list != null && list.size() > 0) {
+			for (Object objs : list) {
+				Object[] obj = (Object[]) objs;
+				Double count = obj[0] == null ? 0 : Double.valueOf(String.valueOf(obj[0]));
+				String userId = (String) obj[1];
+				String _userName = (String) obj[2];
+
+				SalesUserBean sb = new SalesUserBean();
+				sb.setCount(count);
+				sb.setUserId(userId);
+				sb.setUserName(_userName);
 				sblist.add(sb);
 			}
 			result.put("list", sblist);
