@@ -7,6 +7,16 @@ $(function() {
 		checkbox : true
 	});
 	columns.push({
+		field : 'salName',
+		title : '商品',
+		width : 100
+	});
+	columns.push({
+		field : 'salType',
+		title : '型号',
+		width : 100
+	});
+	columns.push({
 		field : 'count',
 		title : '销售总单数',
 		width : 100
