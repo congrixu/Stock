@@ -104,12 +104,16 @@ public class ReportService {
 				Double count = obj[1] == null ? 0 : Double.valueOf(String.valueOf(obj[1]));
 				String userId = (String) obj[2];
 				String _userName = (String) obj[3];
+				String salName = (String) obj[4];
+				String salType = (String) obj[5];
 
 				SalesUserBean sb = new SalesUserBean();
 				sb.setTotal(total);
 				sb.setCount(count);
 				sb.setUserId(userId);
 				sb.setUserName(_userName);
+				sb.setSalName(salName);
+				sb.setSalType(salType);
 				sblist.add(sb);
 			}
 			result.put("list", sblist);
@@ -130,11 +134,15 @@ public class ReportService {
 				Double count = obj[0] == null ? 0 : Double.valueOf(String.valueOf(obj[0]));
 				String userId = (String) obj[1];
 				String _userName = (String) obj[2];
+				String salName = (String) obj[3];
+				String salType = (String) obj[4];
 
 				SalesUserBean sb = new SalesUserBean();
 				sb.setCount(count);
 				sb.setUserId(userId);
 				sb.setUserName(_userName);
+				sb.setSalName(salName);
+				sb.setSalType(salType);
 				sblist.add(sb);
 			}
 			result.put("list", sblist);

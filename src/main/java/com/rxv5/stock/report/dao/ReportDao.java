@@ -80,9 +80,12 @@ public class ReportDao extends BaseHibernateDao {
 	public Map<String, Object> sumSalUser(String userName, String startDate, String endDate, final Integer start,
 			final Integer limit) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("select sum(total_price) total, count(*) totalCount ,u.user_id,u.name_ from t_sales_order o ");
-		sb.append("left join t_user u on o.user_id = u.id where 1=1 ");
-
+		sb
+				.append("select sum(o.total_price) total, count(*) totalCount ,u.user_id,u.name_,c.name_ commodityname,c.type_ from t_sales_order o ");
+		sb.append("left join t_user u on o.user_id = u.id ");
+		sb.append("left join t_sales_item i on o.sales_order_id = i.sales_order_id ");
+		sb.append("	left join t_commodity c on c.commodity_id=i.commodity_id ");
+		sb.append(" where 1=1 ");
 		if (startDate != null && startDate.trim().length() > 0) {
 			sb.append(" and o.sales_date >= '" + startDate + " 00:00:00'");
 		}
@@ -93,8 +96,8 @@ public class ReportDao extends BaseHibernateDao {
 		if (userName != null && userName.trim().length() > 0) {
 			sb.append(" and u.name_ like '%" + userName + "%' ");
 		}
-		sb.append(" group by u.name_,o.user_id ");
-
+		sb.append(" group by u.name_,o.user_id ,c.name_,c.type_ ");
+		sb.append(" order by o.user_id ,c.name_,c.type_ ");
 		final String queryString = sb.toString();
 		return getHibernateTemplate().execute(new HibernateCallback<Map>() {
 			@Override
@@ -117,9 +120,10 @@ public class ReportDao extends BaseHibernateDao {
 	public Map<String, Object> sumFitterUser(String userName, String startDate, String endDate, final Integer start,
 			final Integer limit) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("select count(i.id),u.user_id,u.name_ from t_sales_order o ");
+		sb.append("select count(i.id),u.user_id,u.name_ username ,c.name_,c.type_ from t_sales_order o ");
 		sb.append("left join t_sales_item i on o.sales_order_id = i.sales_order_id ");
 		sb.append("left join t_user u on o.fitter_user_id = u.id ");
+		sb.append("	left join t_commodity c on c.commodity_id=i.commodity_id ");
 		sb.append("where 1=1 ");
 		sb.append("");
 		if (startDate != null && startDate.trim().length() > 0) {
@@ -132,7 +136,8 @@ public class ReportDao extends BaseHibernateDao {
 		if (userName != null && userName.trim().length() > 0) {
 			sb.append(" and u.name_ like '%" + userName + "%' ");
 		}
-		sb.append(" group by o.fitter_user_id,u.name_ ");
+		sb.append(" group by o.fitter_user_id,u.name_,c.name_,c.type_ ");
+		sb.append(" order by o.fitter_user_id,c.name_,c.type_ ");
 
 		final String queryString = sb.toString();
 		return getHibernateTemplate().execute(new HibernateCallback<Map>() {

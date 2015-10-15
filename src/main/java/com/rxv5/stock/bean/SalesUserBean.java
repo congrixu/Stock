@@ -15,6 +15,9 @@ public class SalesUserBean implements Serializable {
 	private String userId;
 	private String userName;
 
+	private String salName;//商品名称
+	private String salType;//商品型号
+
 	public Double getTotal() {
 		return total;
 	}
@@ -45,6 +48,22 @@ public class SalesUserBean implements Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getSalName() {
+		return salName;
+	}
+
+	public String getSalType() {
+		return salType;
+	}
+
+	public void setSalName(String salName) {
+		this.salName = salName;
+	}
+
+	public void setSalType(String salType) {
+		this.salType = salType;
 	}
 
 }

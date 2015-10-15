@@ -7,6 +7,21 @@ $(function() {
 		checkbox : true
 	});
 	columns.push({
+		field : 'salName',
+		title : '商品名称',
+		width : 100
+	});
+	columns.push({
+		field : 'salType',
+		title : '商品型号',
+		width : 100
+	});
+	columns.push({
+		field : 'count',
+		title : '安装总个数',
+		width : 100
+	});
+	columns.push({
 		field : 'count',
 		title : '安装总个数',
 		width : 100

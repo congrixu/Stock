@@ -102,6 +102,8 @@ public class ReportAction extends BaseActionSupport {
 		map.put("count", "####");
 		map.put("userId", "userId");
 		map.put("userName", "userName");
+		map.put("salName", "salName");
+		map.put("salType", "salType");
 		new SendData().sendDataJson(map, list, total, getResponse());
 	}
 
@@ -132,6 +134,8 @@ public class ReportAction extends BaseActionSupport {
 		map.put("count", "####");
 		map.put("userId", "userId");
 		map.put("userName", "userName");
+		map.put("salName", "salName");
+		map.put("salType", "salType");
 		new SendData().sendDataJson(map, list, total, getResponse());
 	}
 
