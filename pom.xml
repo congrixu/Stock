@@ -10,7 +10,7 @@
 	<jetty-version>7.5.4.v20111024</jetty-version>
 	<spring.version>3.1.2.RELEASE</spring.version>
 	<struts2.version>2.3.4.1</struts2.version>
-	<hibernate3.version>3.6.10.Final</hibernate3.version>
+	<hibernate3.version>5.4.24.Final</hibernate3.version>
 	<jackson.version>1.9.9</jackson.version>
   </properties>
   
